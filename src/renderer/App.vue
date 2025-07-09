@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-titlebar />
+    <app-titlebar :titleText="computedTitle" />
     <transition name="slide-left" mode="out-in">
       <app-drawer v-if="drawerOpen" />
     </transition>
@@ -49,6 +49,17 @@ export default {
 
     theme() {
       return this.$store.getters.theme
+    },
+
+    currentDrawer() {
+      return this.$store.getters.currentDrawer
+    },
+
+    computedTitle() {
+      if (this.drawerOpen && this.currentDrawer === 'appDrawerTimer') {
+        return 'Timer'
+      }
+      return 'Pomotroid'
     }
   },
 
