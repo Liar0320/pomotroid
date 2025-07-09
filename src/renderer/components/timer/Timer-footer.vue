@@ -1,118 +1,50 @@
 <template>
   <section class="Container Footer">
     <div class="Round-wrapper">
-      <p>
-        {{ round + '/' + workRounds }}
-        <span
-          v-if="totalWorkRounds > 0"
-          class="Total-rounds"
-          title="Focus rounds completed"
-          >({{ totalWorkRounds }})</span
-        >
-      </p>
-      <p class="TextButton" title="Reset current round" @click="callForReset">
-        Reset
-      </p>
+      <div class="Round-reset-row-strict">
+        <span class="Round-main">
+          {{ round + '/' + workRounds }}
+          <span v-if="totalWorkRounds > 0" class="Total-rounds" title="Focus rounds completed">({{ totalWorkRounds
+            }})</span>
+        </span>
+        <span class="TextButton Reset-orange" title="Reset current round" @click="callForReset">
+          Reset
+        </span>
+      </div>
     </div>
-    <div class="Icon-group" style="position: absolute; right: 0;">
+    <div class="Icon-group">
       <!-- skip -->
-      <div
-        class="Icon-wrapper Icon-wrapper--double--left"
-        title="Skip the current round"
-        @click="skipRound"
-      >
-        <svg
-          version="1.2"
-          baseProfile="tiny"
-          id="Layer_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 8 12"
-          xml:space="preserve"
-          height="15px"
-          class="Icon--skip"
-        >
-          <polygon
-            fill="var(--color-background-lightest)"
-            points="0,0 0,12 6.1,5.9"
-          />
-          <rect
-            x="6.9"
-            y="0"
-            fill="var(--color-background-lightest)"
-            width="1.1"
-            height="12"
-          />
+      <div class="Icon-wrapper Icon-wrapper--double--left" title="Skip the current round" @click="skipRound">
+        <!-- 跳过按钮的SVG 图标 -->
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 4.80005L14.4 12L6 19.2V4.80005Z" stroke="white" stroke-width="1.66667" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M18 6V18" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
       <!-- mute -->
-      <div
-        class="Icon-wrapper Icon-wrapper--double--right"
-        :title="volume > 0 ? 'Mute' : 'Unmute'"
-        @click="toggleMute"
-        @mouseenter="volumeSliderHidden = false"
-      >
+      <div class="Icon-wrapper Icon-wrapper--double--right" :title="volume > 0 ? 'Mute' : 'Unmute'" @click="toggleMute"
+        @mouseenter="volumeSliderHidden = false">
         <transition name="fade" mode="out-in">
-          <svg
-            version="1.2"
-            baseProfile="tiny"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="0 0 12.3 12"
-            xml:space="preserve"
-            height="15px"
-            class="Icon--mute"
-            v-if="localVolume > 0"
-          >
-            <path
-              fill="var(--color-background-lightest)"
-              d="M0,3.9v4.1h2.7l3.4,3.4V0.5L2.7,3.9H0z M9.2,6c0-1.2-0.7-2.3-1.7-2.8v5.5C8.5,8.3,9.2,7.2,9.2,6z M7.5,0v1.4
-      c2,0.6,3.4,2.4,3.4,4.6s-1.4,4-3.4,4.6V12c2.7-0.6,4.8-3.1,4.8-6S10.3,0.6,7.5,0z"
-            />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Icon--mute" v-if="localVolume > 0">
+            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.54 8.45996C16.4773 9.3976 17.0039 10.6691 17.0039 11.995C17.0039 13.3208 16.4773 14.5923 15.54 15.53" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <svg
-            version="1.1"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="-467 269 24 24"
-            style="enable-background:new -467 269 24 24;"
-            xml:space="preserve"
-            height="20px"
-            class="Icon--muted"
-            v-else
-          >
-            <path
-              fill="var(--color-background-lightest)"
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="-467 269 24 24" style="enable-background:new -467 269 24 24;" xml:space="preserve"
+            height="20px" class="Icon--muted" v-else>
+            <path fill="var(--color-background-lightest)"
               d="M-450.5,281c0-1.8-1-3.3-2.5-4v2.2l2.5,2.5C-450.5,281.4-450.5,281.2-450.5,281z M-448,281c0,0.9-0.2,1.8-0.5,2.6l1.5,1.5
               c0.7-1.2,1-2.6,1-4.1c0-4.3-3-7.9-7-8.8v2.1C-450.1,275.1-448,277.8-448,281z M-462.7,272l-1.3,1.3l4.7,4.7h-4.7v6h4l5,5v-6.7
-              l4.3,4.3c-0.7,0.5-1.4,0.9-2.3,1.2v2.1c1.4-0.3,2.6-1,3.7-1.8l2,2l1.3-1.3l-9-9L-462.7,272z M-455,273l-2.1,2.1l2.1,2.1V273z"
-            />
+              l4.3,4.3c-0.7,0.5-1.4,0.9-2.3,1.2v2.1c1.4-0.3,2.6-1,3.7-1.8l2,2l1.3-1.3l-9-9L-462.7,272z M-455,273l-2.1,2.1l2.1,2.1V273z" />
             <path fill="none" d="M-467,269h24v24h-24V269z" />
           </svg>
         </transition>
       </div>
       <!-- volume slider -->
       <transition name="fade">
-        <div
-          class="Slider-wrapper Slider-wrapper--vert"
-          v-show="!volumeSliderHidden"
-        >
-          <input
-            type="range"
-            min="0"
-            max="100"
-            class="Slider"
-            v-model="localVolume"
-            @change="setVolume"
-          />
+        <div class="Slider-wrapper Slider-wrapper--vert" v-show="!volumeSliderHidden">
+          <input type="range" min="0" max="100" class="Slider" v-model="localVolume" @change="setVolume" />
           <div class="Slider-bar Slider-bar--blueGrey"></div>
         </div>
       </transition>
@@ -223,6 +155,13 @@ export default {
 }
 
 .Icon--mute {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  display: inline-block;
   & path {
     transition: $transitionDefault;
   }
@@ -248,19 +187,51 @@ export default {
 }
 
 .Icon--skip {
-  & polygon,
-  & rect {
-    transition: $transitionDefault;
-  }
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  display: inline-block;
+}
+.Icon-wrapper--double--left {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Round-wrapper {
-  text-align: center;
-
-  .Total-rounds {
-    color: var(--color-foreground-darker);
-    font-size: 0.7rem;
-  }
+  width: 100%;
+  text-align: left;
+  margin-top: 16px; // 新增，数值可根据需要调整
+}
+.Round-reset-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.Round-main {
+  color: var(--color-foreground-lightest);
+  font-size: 1.25rem;  // 这里调整2/3的字体大小
+  font-weight: 400;   // 可选，调整粗细
+}
+.Total-rounds {
+  color: var(--color-accent);   // 颜色
+  font-size: 1rem;             // 这里调整(19)的字体大小
+  margin-left: 2px;
+  font-weight: 400;             // 可选，调整粗细
+}
+.Reset-orange {
+  color: var(--color-accent);   // 颜色
+  font-size: 0.875rem;            // 这里调整Reset的字体大小
+  cursor: pointer;
+  font-weight: 400;             // 可选，调整粗细
 }
 
 .Slider-wrapper {
@@ -282,5 +253,17 @@ export default {
       border-color: var(--color-accent);
     }
   }
+}
+.Round-reset-row-strict {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+.Icon-group {
+  position: absolute;
+  right: 0;
+  bottom: 8px; // 新增，向下移动8px，可根据需要调整
 }
 </style>

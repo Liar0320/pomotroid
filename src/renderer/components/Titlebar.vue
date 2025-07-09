@@ -1,95 +1,41 @@
 <template>
   <nav class="Titlebar">
     <!-- menu -->
-    <div
-      class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single"
-      style="position: absolute;"
-      title="Settings"
-      @click="toggleDrawer"
-    >
+    <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single" style="position: absolute;" title="Settings"
+      @click="toggleDrawer">
       <div class="Menu-wrapper" :class="drawerOpen ? 'is-collapsed' : ''">
-        <div class="Menu-line"></div>
-        <div class="Menu-line"></div>
+        <!-- 默认状态的svg图标 -->
+        <svg class="default-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 18L14 18" stroke="#6170A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M4 12L20 12" stroke="#6170A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M4 6L10 6" stroke="#6170A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <!-- 切换后的svg图标 -->
+        <svg class="collapsed-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="#6170A3" stroke-width="1.4" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
       </div>
     </div>
 
     <h1 class="Title">Pomotroid</h1>
 
     <div class="Icon-group" style="position: absolute; top: 0; right: 0;">
-      <div
-        class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--double--left"
-        style="padding-left: 18px"
-        @click="winMinimize"
-      >
+      <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--double--left" style="padding-left: 18px"
+        @click="winMinimize">
         <!-- minimize -->
-        <svg
-          version="1.2"
-          baseProfile="tiny"
-          id="Layer_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 14 2"
-          xml:space="preserve"
-          width="15px"
-          height="20px"
-          class="Icon Icon--minimize"
-        >
-          <line
-            fill="none"
-            stroke="#F6F2EB"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            x1="1"
-            y1="1"
-            x2="13"
-            y2="1"
-          />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19" stroke="#6170A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
-      <div
-        class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--double--right"
-        style="padding-right: 18px"
-        @click="winClose"
-      >
+      <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--double--right" style="padding-right: 18px"
+        @click="winClose">
         <!-- close -->
-        <svg
-          version="1.2"
-          baseProfile="tiny"
-          id="Layer_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 12.6 12.6"
-          xml:space="preserve"
-          height="15px"
-          class="Icon Icon--close"
-        >
-          <line
-            fill="none"
-            stroke="#F6F2EB"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            x1="1"
-            y1="1"
-            x2="11.6"
-            y2="11.6"
-          />
-          <line
-            fill="none"
-            stroke="#F6F2EB"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            x1="11.6"
-            y1="1"
-            x2="1"
-            y2="11.6"
-          />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18" stroke="#6170A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M6 6L18 18" stroke="#6170A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
     </div>
@@ -141,32 +87,29 @@ export default {
   }
 }
 
-.Menu-line {
-  background-color: var(--color-background-lightest);
-  display: inline-block;
-  transition: $transitionDefault;
-  width: 20px;
-  height: 2px;
-  &:last-child {
-    width: 10px;
-  }
-}
-
 .Menu-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 80%;
-  &.is-collapsed {
-    & .Menu-line:first-child {
-      transform: rotate(-45deg);
-      width: 12px;
-    }
-    & .Menu-line:last-child {
-      transform: rotate(45deg);
-      width: 12px;
-    }
-  }
+  height: 150%;
+}
+/* 默认状态 */
+.default-icon {
+  display: block;
+}
+
+/* 收起状态 */
+.collapsed-icon {
+  display: none;
+}
+
+/* 当 .Menu-wrapper 添加 is-collapsed 类时 */
+.Menu-wrapper.is-collapsed .default-icon {
+  display: none;
+}
+
+.Menu-wrapper.is-collapsed .collapsed-icon {
+  display: block;
 }
 
 .Title {
@@ -196,5 +139,14 @@ export default {
   &:hover .Icon--minimize line {
     stroke: var(--color-accent);
   }
+}
+
+.Icon-wrapper--titlebar svg {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
 }
 </style>
