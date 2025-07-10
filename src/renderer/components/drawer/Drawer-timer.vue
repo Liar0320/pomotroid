@@ -207,36 +207,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.Container {
+  max-height: calc(100% - 36px);
+  overflow-y: auto;
+}
 .Setting-wrapper {
-  margin: 24px 0 0 0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 8px 0;
+  padding: 12px;
 }
 .Setting-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 16px;
   margin-bottom: 6px;
 }
 .Setting-title {
-  min-width: 72px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-foreground-darkest);
+  color: var(--color-foreground-darker);
+  font-size: 16px;
   letter-spacing: 0.05em;
+  font-weight: 400;
   text-align: left;
   margin-bottom: 0;
+  color:#FFFFFF;
 }
 .Setting-value {
   background-color: #23273a;
-  border-radius: 6px;
+  border-radius: 4px;
   display: inline-block;
   font-family: 'RobotoMono', monospace;
   font-size: 14px;
   color: #fff;
-  padding: 4px 10px;
-  min-width: 56px;
+  padding: 4px 8px;
   text-align: center;
-  margin: 0 0 0 0;
+  margin: 0;
 }
 .Slider-wrapper {
   width: 100%;
@@ -277,11 +284,11 @@ export default {
   color: var(--color-background-lightest);
 }
 .TextButton {
-  color: #ff9800;
+  color:#FF9041;
   text-align: right;
-  margin-right: 8px;
-  margin-top: 8px;
-  font-size: 15px;
+  margin-right: 0px;
+  margin-top: -3px;
+  font-size: 14px;
   cursor: pointer;
 }
 </style>

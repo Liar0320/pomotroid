@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <h1 class="Title">Pomotroid</h1>
+    <h1 class="Title">{{ titleText }}</h1>
 
     <div class="Icon-group" style="position: absolute; top: 0; right: 0;">
       <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--double--left" style="padding-left: 18px"
@@ -46,6 +46,12 @@
 import { ipcRenderer } from 'electron'
 
 export default {
+  props: {
+    titleText: {
+      type: String,
+      default: 'Pomotroid'
+    }
+  },
   computed: {
     drawerOpen() {
       return this.$store.getters.drawerOpen
