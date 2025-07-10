@@ -68,9 +68,16 @@ export default {
   },
 
   mounted() {
-    EventBus.$on('timer-completed', () => {
+    this._onTimerCompleted = () => {
       this.checkRound()
-    })
+    }
+    // 注册前先解绑，彻底防止重复监听
+    EventBus.$off('timer-completed', this._onTimerCompleted)
+    EventBus.$on('timer-completed', this._onTimerCompleted)
+  },
+  beforeDestroy() {
+    // 解绑，防止重复注册
+    EventBus.$off('timer-completed', this._onTimerCompleted)
   }
 }
 </script>
