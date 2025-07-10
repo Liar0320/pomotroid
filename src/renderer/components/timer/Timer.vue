@@ -375,6 +375,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .Button {
   border: 2px solid #6170A3;
   border-radius: 100%;

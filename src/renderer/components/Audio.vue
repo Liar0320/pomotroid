@@ -56,26 +56,38 @@ export default {
     // Volume attribute on audio is not supported
     // and must be set programmatically.
     EventBus.$on('ready-long-break', () => {
-      this.$refs['audio-long-break'].volume = this.volume
-      this.$refs['audio-long-break'].play()
+      const audio = this.$refs['audio-long-break']
+      if (audio) {
+        audio.volume = this.volume
+        audio.play()
+      }
     })
 
     EventBus.$on('ready-short-break', () => {
-      this.$refs['audio-short-break'].volume = this.volume
-      this.$refs['audio-short-break'].play()
+      const audio = this.$refs['audio-short-break']
+      if (audio) {
+        audio.volume = this.volume
+        audio.play()
+      }
     })
 
     EventBus.$on('timer-tick', () => {
-      this.$refs['audio-tick'].volume = this.volume
-      const isBreak = this.currentRound === 'short-break' || this.currentRound === 'long-break'
-      if (isBreak && !this.tickSoundsDuringBreak) return
-      if (!isBreak && !this.tickSounds) return
-      this.$refs['audio-tick'].play()
+      const audio = this.$refs['audio-tick']
+      if (audio) {
+        audio.volume = this.volume
+        const isBreak = this.currentRound === 'short-break' || this.currentRound === 'long-break'
+        if (isBreak && !this.tickSoundsDuringBreak) return
+        if (!isBreak && !this.tickSounds) return
+        audio.play()
+      }
     })
 
     EventBus.$on('ready-work', () => {
-      this.$refs['audio-work'].volume = this.volume
-      this.$refs['audio-work'].play()
+      const audio = this.$refs['audio-work']
+      if (audio) {
+        audio.volume = this.volume
+        audio.play()
+      }
     })
   }
 }
