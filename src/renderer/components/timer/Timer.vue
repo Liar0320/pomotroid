@@ -375,8 +375,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .Button {
-  border: 2px solid var(--color-background-lightest);
+  border: 2px solid #6170A3;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -418,5 +419,92 @@ export default {
 .Timer-wrapper {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  padding: 0;
+  background: none;
+}
+.Setting-wrapper {
+  background: none;
+  border-radius: 0;
+  margin: 0 0 24px 0;
+  padding: 0;
+  box-shadow: none;
+}
+.Setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.Setting-title {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  min-width: 90px;
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
+}
+.Setting-value {
+  background: #23273a;
+  border-radius: 6px;
+  font-family: 'RobotoMono', monospace;
+  font-size: 1rem;
+  color: #fff;
+  padding: 2px 10px;
+  min-width: 40px;
+  text-align: center;
+  margin: 0 0 0 8px;
+}
+.Slider-wrapper {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+.Slider {
+  width: 100%;
+  height: 3px;
+  margin-top: 0;
+  &::-webkit-slider-runnable-track {
+    background-color: #44485a;
+    height: 3px;
+  }
+  &::-webkit-slider-thumb {
+    background-color: currentColor;
+    border: none;
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    -webkit-appearance: none;
+    -webkit-app-region: no-drag;
+    transform: translateY(2px);
+  }
+  &::-moz-range-thumb {
+    transform: translateY(2px);
+  }
+}
+.Slider--red {
+  color: var(--color-focus-round);
+}
+.Slider--green {
+  color: var(--color-short-round);
+}
+.Slider--blue {
+  color: var(--color-long-round);
+}
+.Slider-bar--blueGrey,
+.Slider--blueGrey {
+  color: var(--color-background-lightest);
+}
+.TextButton {
+  margin-top: auto;
+  margin-right: 24px;
+  margin-bottom: 24px;
+  align-self: flex-end;
+  color: #ff9800;
+  text-align: right;
+  font-size: 15px;
+  cursor: pointer;
 }
 </style>
