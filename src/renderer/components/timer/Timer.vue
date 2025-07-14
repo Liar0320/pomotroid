@@ -376,7 +376,7 @@ export default {
 
 <style lang="scss" scoped>
 .Button {
-  border: 2px solid var(--color-background-lightest);
+  border: 2px solid #6170A3;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -418,5 +418,12 @@ export default {
 .Timer-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.Icon--start polygon {
+  fill: #6170A3;
+}
+.Icon--pause line {
+  stroke: #6170A3;
 }
 </style>
