@@ -33,7 +33,9 @@ jobs:
         run: npm install
 
       - name: Build macOS and Windows apps
-        run:  PYTHON_PATH=$(which python3) npm run build -- --mac --win
+        run:  PYTHON_PATH=$(which python3) npm run build -- --mac --win --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Archive release artifacts
         uses: actions/upload-artifact@v4
@@ -47,21 +49,21 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub Pre-release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: pre-release-${{ github.run_number }}
-          name: Pre-release ${{ github.run_number }}
-          body: |
-            ✅ 自动构建发布  
-            - 包含 macOS (.dmg) 与 Windows (.exe) 安装包
-            - 构建版本号：${{ github.run_number }}
-          draft: false
-          prerelease: true
-          files: |
-            build/*.dmg
-            build/*.exe
-            build/*.portable.exe
-            build/*.zip
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create GitHub Pre-release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     tag_name: pre-release-${{ github.run_number }}
+      #     name: Pre-release ${{ github.run_number }}
+      #     body: |
+      #       ✅ 自动构建发布  
+      #       - 包含 macOS (.dmg) 与 Windows (.exe) 安装包
+      #       - 构建版本号：${{ github.run_number }}
+      #     draft: false
+      #     prerelease: true
+      #     files: |
+      #       build/*.dmg
+      #       build/*.exe
+      #       build/*.portable.exe
+      #       build/*.zip
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
