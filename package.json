@@ -28,7 +28,7 @@
   },
   "build": {
     "productName": "Pomotroid",
-    "appId": "com.splode.pomotroid",
+    "appId": "com.nearhub.pomotroid",
     "directories": {
       "output": "build"
     },

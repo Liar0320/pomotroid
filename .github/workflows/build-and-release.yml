@@ -40,7 +40,7 @@ jobs:
       - name: Archive release artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: pomotroid-artifacts
+          name: pomotroid-artifacts-${{ github.run_number }}
           path: |
             build/*.dmg
             build/*.exe
@@ -49,21 +49,21 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Create GitHub Pre-release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     tag_name: pre-release-${{ github.run_number }}
-      #     name: Pre-release ${{ github.run_number }}
-      #     body: |
-      #       ✅ 自动构建发布  
-      #       - 包含 macOS (.dmg) 与 Windows (.exe) 安装包
-      #       - 构建版本号：${{ github.run_number }}
-      #     draft: false
-      #     prerelease: true
-      #     files: |
-      #       build/*.dmg
-      #       build/*.exe
-      #       build/*.portable.exe
-      #       build/*.zip
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub Pre-release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: pre-release-${{ github.run_number }}
+          name: Pre-release ${{ github.run_number }}
+          body: |
+            ✅ 自动构建发布  
+            - 包含 macOS (.dmg) 与 Windows (.exe) 安装包
+            - 构建版本号：${{ github.run_number }}
+          draft: false
+          prerelease: true
+          files: |
+            build/*.dmg
+            build/*.exe
+            build/*.portable.exe
+            build/*.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
