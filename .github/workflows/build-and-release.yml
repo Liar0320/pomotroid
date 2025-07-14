@@ -1,0 +1,58 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - pre-release
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest  # macOS runner 可以构建 mac 和 win 应用
+    strategy:
+      matrix:
+        node-version: [16]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build macOS and Windows apps
+        run: npm run build -- --mac --win
+
+      - name: Archive release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pomotroid-artifacts
+          path: |
+            build/*.dmg
+            build/*.exe
+            build/*.portable.exe
+            build/*.zip
+
+      - name: Create GitHub Pre-release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: pre-release-${{ github.run_number }}
+          name: Pre-release ${{ github.run_number }}
+          body: |
+            ✅ 自动构建发布  
+            - 包含 macOS (.dmg) 与 Windows (.exe) 安装包
+            - 构建版本号：${{ github.run_number }}
+          draft: false
+          prerelease: true
+          files: |
+            build/*.dmg
+            build/*.exe
+            build/*.portable.exe
+            build/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
