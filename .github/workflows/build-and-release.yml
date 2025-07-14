@@ -44,6 +44,8 @@ jobs:
             build/*.exe
             build/*.portable.exe
             build/*.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v1
