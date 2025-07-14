@@ -60,7 +60,7 @@
           @change="setWorkRounds"
         />
         <div
-          class="Slider-bar Slider-bar--blueGrey"
+          class="Slider-bar  Slider-bar--blueGrey"
           :style="{
             width: calcRoundPercentage(localWorkRounds, maxRounds) + '%'
           }"
@@ -279,10 +279,13 @@ export default {
 .Slider--blue {
   color: var(--color-long-round);
 }
+
 .Slider-bar--blueGrey,
 .Slider--blueGrey {
-  color: var(--color-background-lightest);
+  color: #6170A3;
+  background-color: #6170A3;
 }
+
 .TextButton {
   color:#FF9041;
   text-align: right;

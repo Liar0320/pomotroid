@@ -119,7 +119,7 @@ export default {
 }
 
 .Title {
-  color: var(--color-short-round);
+  color: #FF9041;
   font-size: 1rem;
   font-weight: 200;
   padding-top: 18px;

@@ -68,11 +68,10 @@ export default {
   },
 
   mounted() {
+    // 命名回调，便于解绑
     this._onTimerCompleted = () => {
       this.checkRound()
     }
-    // 注册前先解绑，彻底防止重复监听
-    EventBus.$off('timer-completed', this._onTimerCompleted)
     EventBus.$on('timer-completed', this._onTimerCompleted)
   },
   beforeDestroy() {

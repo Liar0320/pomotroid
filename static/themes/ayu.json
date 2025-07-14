@@ -1,15 +1,16 @@
 {
-  "name": "Ayu",
+  "name": "Autumn Blessing",
   "colors": {
-    "--color-long-round": "#5CCFE6",
-    "--color-short-round": "#BAE67E",
-    "--color-focus-round": "#F28779",
-    "--color-background": "#1F2430",
-    "--color-background-light": "#2a3546",
-    "--color-background-lightest": "#707a8c",
-    "--color-foreground": "#CBCCC6",
-    "--color-foreground-darker": "#CBCCC6",
-    "--color-foreground-darkest": "#5ccfe6",
-    "--color-accent": "#FFCC66"
+    "--color-long-round": "#8AE8FC",
+    "--color-short-round": "#4EF97A",
+    "--color-focus-round": "#FE5454",
+    "--color-background": "#282A36",
+    "--color-background-light": "#373745",
+    "--color-background-lightest": "#373745",
+    "--color-foreground": "#d5ced9",
+    "--color-foreground-darker": "#746f77",
+    "--color-foreground-darkest": "#FF9041",
+    "--color-accent": "#FF9041",
+    "--color-accent-light": "#633738"
   }
 }

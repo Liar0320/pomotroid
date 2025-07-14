@@ -26,7 +26,7 @@
         Version: {{ version }}
         <span class="link" @click="openUrl(releaseUrl)">(release notes)</span>
       </p>
-      <p class="label link" @click="openUrl('https://github.com/splode/pomotroid')">
+      <p class="label link" @click="openUrl('https://www.nearhub.us/')">
         License and Documentation
       </p>
     </section>
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 h2 {
-  color: var(--color-short-round);
+  color: #FFFFFF;
   font-weight: 400;
   letter-spacing: 0.05em;
   margin: 0.5em 0;

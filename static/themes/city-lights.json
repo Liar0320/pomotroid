@@ -1,15 +1,16 @@
 {
-  "name": "City Lights",
+  "name": "Pure Snow",
   "colors": {
-    "--color-long-round": "#6796E6",
-    "--color-short-round": "#33CED8",
-    "--color-focus-round": "#E27E8D",
-    "--color-background": "#1d252c",
-    "--color-background-light": "#28313a",
-    "--color-background-lightest": "#718CA1",
-    "--color-foreground": "#b7c5d3",
-    "--color-foreground-darker": "#718CA1",
-    "--color-foreground-darkest": "#718CA1",
-    "--color-accent": "#EBBF83"
+    "--color-long-round": "#8AE8FC",
+    "--color-short-round": "#4EF97A",
+    "--color-focus-round": "#FE5454",
+    "--color-background": "#282A36",
+    "--color-background-light": "#373745",
+    "--color-background-lightest": "#373745",
+    "--color-foreground": "#d5ced9",
+    "--color-foreground-darker": "#746f77",
+    "--color-foreground-darkest": "#FF9041",
+    "--color-accent": "#FF9041",
+    "--color-accent-light": "#FFFFFF"
   }
 }

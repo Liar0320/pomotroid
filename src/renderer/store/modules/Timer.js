@@ -54,9 +54,6 @@ const getters = {
 const mutations = {
   INCREMENT_ROUND(state) {
     state.round += 1
-    if (state.round > state.workRounds) {
-      state.round = 1
-    }
   },
 
   RESET_ROUND(state) {
