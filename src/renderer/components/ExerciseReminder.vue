@@ -5,8 +5,16 @@
       <div class="progress-bar-bg">
         <div class="progress-bar" :style="{ width: percent + '%' }"></div>
       </div>
-      <div class="countdown">还剩 {{ seconds }} 秒</div>
-      <button class="skip-btn" @click="skip">跳过此次休息</button>
+      <div class="countdown">Countdown: {{ seconds }} seconds</div>
+      <button class="skip-btn" @click="skip">
+        Skip this break
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.16663 10.5H15.8333" stroke="white" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M10 4.9097L15.8333 10.5L10 16.0903" stroke="white" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
     </div>
   </div>
 </template>
@@ -29,7 +37,12 @@ export default {
   },
   methods: {
     skip() {
-      window.close()
+      if (window.require) {
+        const { ipcRenderer } = window.require('electron')
+        ipcRenderer.send('skip-exercise-and-close')
+      } else {
+        window.close()
+      }
     },
     startCountdown() {
       this.timer = setInterval(() => {
@@ -96,35 +109,55 @@ html, body {
   width: 80%;
   text-align: center;
   color: #fff;
+  position: relative;
 }
 h2 {
   font-size: 2rem;
   margin-bottom: 32px;
 }
 .progress-bar-bg {
-  width: 60%;
-  height: 6px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 3px;
+  width: 588px;
+  height: 10px;
+  background: transparent; /* 与弹窗背景色一致 */
+  border-radius: 12px;
   margin: 0 auto 16px auto;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.5);
 }
 .progress-bar {
   height: 100%;
   background: #fff;
-  border-radius: 3px;
+  border-radius: 12px;
   transition: width 0.3s;
 }
 .countdown {
   margin-bottom: 40px;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 .skip-btn {
   background: none;
   border: none;
   color: #fff;
-  font-size: 1rem;
-  text-decoration: underline;
+  font-size: 20px;
+  text-decoration: none;
   cursor: pointer;
+  padding: 0;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  transition: none;
+  position: absolute;
+  top: 405px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.skip-btn:hover {
+  background: none;
+  color: #fff;
+}
+.skip-arrow {
+  width: 1.2em;
+  height: 1.2em;
+  stroke: #fff;
 }
 </style>

@@ -292,15 +292,15 @@ function createExerciseWindow(message = '请休息一下，做几次深呼吸。
     })
     exerciseWindow.loadURL(url)
     exerciseWindow.on('closed', () => {
-      console.log('exerciseWindow 已关闭')
+      // console.log('exerciseWindow 已关闭')
       exerciseWindow = null
     })
     // 主进程定时强制关闭弹窗
     setTimeout(() => {
       if (exerciseWindow) {
-        console.log('主进程定时器触发，强制关闭exerciseWindow')
+        // console.log('主进程定时器触发，强制关闭exerciseWindow')
         exerciseWindow.destroy()
-        console.log('已执行 exerciseWindow.destroy()')
+        // console.log('已执行 exerciseWindow.destroy()')
         exerciseWindow = null
       }
     }, duration * 1000)
@@ -309,17 +309,28 @@ function createExerciseWindow(message = '请休息一下，做几次深呼吸。
 
 // 监听渲染进程的 IPC 触发
 ipcMain.on('show-exercise-reminder', (event, { message, duration }) => {
-  console.log('收到 show-exercise-reminder IPC', message, duration)
+  // console.log('收到 show-exercise-reminder IPC', message, duration)
   createExerciseWindow(message, duration)
 })
 
 ipcMain.on('close-exercise-window', () => {
-  console.log('收到关闭弹窗请求')
+  // console.log('收到关闭弹窗请求')
   if (exerciseWindow) {
     exerciseWindow.destroy()
-    console.log('已执行 exerciseWindow.destroy()')
+    // console.log('已执行 exerciseWindow.destroy()')
     exerciseWindow = null
   } else {
-    console.log('exerciseWindow 不存在')
+    // console.log('exerciseWindow 不存在')
+  }
+})
+
+ipcMain.on('skip-exercise-and-close', () => {
+  // console.log('收到跳过休息请求')
+  if (exerciseWindow) {
+    exerciseWindow.destroy()
+    exerciseWindow = null
+  }
+  if (mainWindow) {
+    mainWindow.webContents.send('skip-break-round')
   }
 })

@@ -360,6 +360,15 @@ export default {
       EventBus.$emit(arg)
     })
 
+    if (window.require) {
+      const { ipcRenderer } = window.require('electron')
+      ipcRenderer.on('skip-break-round', () => {
+        // 触发跳过休息轮次
+        this.$emit('timer-completed')
+        // 或 EventBus.$emit('timer-completed')，根据你的实际实现
+      })
+    }
+
     // Bind event listener to Space key
     window.addEventListener(
       'keypress',
