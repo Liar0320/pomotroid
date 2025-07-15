@@ -248,3 +248,78 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
+
+// 在主进程文件末尾添加锻炼弹窗相关代码
+let exerciseWindow = null
+
+function createExerciseWindow(message = '请休息一下，做几次深呼吸。', duration = 30) {
+  console.log('createExerciseWindow 被调用', message, duration)
+  if (exerciseWindow) {
+    exerciseWindow.destroy()
+  }
+  // 获取主窗口位置和尺寸，计算弹窗居中坐标
+  const [mainX, mainY] = mainWindow.getPosition()
+  const [mainWidth, mainHeight] = mainWindow.getSize()
+  const popupWidth = 1280
+  const popupHeight = 800
+  const popupX = mainX + Math.round((mainWidth - popupWidth) / 2)
+  const popupY = mainY + Math.round((mainHeight - popupHeight) / 2)
+
+  // 获取主窗口的主题色变量并传递给弹窗
+  mainWindow.webContents.executeJavaScript(
+    "getComputedStyle(document.documentElement).getPropertyValue('--color-accent-light').trim()"
+  ).then((accentColor) => {
+    const url =
+      process.env.NODE_ENV === 'development'
+        ? `http://localhost:9080/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}`
+        : `file://${__dirname}/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}`
+    exerciseWindow = new BrowserWindow({
+      width: popupWidth,
+      height: popupHeight,
+      x: popupX,
+      y: popupY,
+      resizable: false,
+      frame: false,
+      alwaysOnTop: true,
+      backgroundColor: '#00000000', // 透明
+      transparent: true,
+      parent: mainWindow, // 让弹窗在主窗口之上
+      modal: false,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false
+      }
+    })
+    exerciseWindow.loadURL(url)
+    exerciseWindow.on('closed', () => {
+      console.log('exerciseWindow 已关闭')
+      exerciseWindow = null
+    })
+    // 主进程定时强制关闭弹窗
+    setTimeout(() => {
+      if (exerciseWindow) {
+        console.log('主进程定时器触发，强制关闭exerciseWindow')
+        exerciseWindow.destroy()
+        console.log('已执行 exerciseWindow.destroy()')
+        exerciseWindow = null
+      }
+    }, duration * 1000)
+  })
+}
+
+// 监听渲染进程的 IPC 触发
+ipcMain.on('show-exercise-reminder', (event, { message, duration }) => {
+  console.log('收到 show-exercise-reminder IPC', message, duration)
+  createExerciseWindow(message, duration)
+})
+
+ipcMain.on('close-exercise-window', () => {
+  console.log('收到关闭弹窗请求')
+  if (exerciseWindow) {
+    exerciseWindow.destroy()
+    console.log('已执行 exerciseWindow.destroy()')
+    exerciseWindow = null
+  } else {
+    console.log('exerciseWindow 不存在')
+  }
+})

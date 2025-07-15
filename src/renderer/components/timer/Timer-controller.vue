@@ -36,12 +36,22 @@ export default {
         EventBus.$emit('ready-long-break')
         logger.info('focus round completed')
         ipcRenderer.send('onBreak', true)
+        // 触发长休息弹窗
+        ipcRenderer.send('show-exercise-reminder', {
+          message: '长休息时间到，做个拉伸锻炼吧！',
+          duration: this.$store.getters.timeLongBreak * 60 // 秒
+        })
       } else if (this.currentRound === 'work') {
         this.$store.dispatch('setCurrentRound', 'short-break')
         this.$store.dispatch('incrementTotalWorkRounds')
         EventBus.$emit('ready-short-break')
         logger.info('focus round completed')
         ipcRenderer.send('onBreak', true)
+        // 触发短休息弹窗
+        ipcRenderer.send('show-exercise-reminder', {
+          message: '短休息时间到，起来活动一下！',
+          duration: this.$store.getters.timeShortBreak * 60 // 秒
+        })
       } else if (this.currentRound === 'short-break') {
         this.$store.dispatch('setCurrentRound', 'work')
         this.$store.dispatch('incrementRound')
