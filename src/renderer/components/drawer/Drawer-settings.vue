@@ -121,8 +121,16 @@
     <!-- 未实现-Language（语言切换功能） -->
     <div class="Setting-wrapper">
       <p class="Setting-title">Language</p>
-      <div class="Checkbox" @click="selectAutoStartBreakTimer"
-        :class="autoStartBreakTimer ? 'is-active' : 'is-inactive'"></div>
+      <div class="language-select-wrapper">
+        <select id="language-select" class="language-select" >
+          <option value="en" selected>English</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="ja">日本語</option>
+        </select>
+        <svg class="select-arrow" width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L8 8L15 1" stroke="#6170A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
     </div>
     <!-- 三个快捷键 -->
     <div class="Settings-header">
@@ -334,6 +342,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 语言切换功能下拉框样式
+.language-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.language-select {
+  background: transparent;
+  color: #6170A3;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  padding: 4px 32px 4px 8px; /* 右侧留空间给箭头 */
+  min-width: 100px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.language-select option {
+  color: #282a36;
+  background: #fff;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+  /* 保证和文字对齐 */
+}
 // 分类导航栏样式
 .Settings-header {
   display: flex;
