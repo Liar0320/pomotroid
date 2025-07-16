@@ -95,6 +95,25 @@ ipcMain.on('toggle-minToTray', (event, arg) => {
   }
 })
 
+// ====== 开机自启动相关 ======
+// 设置开机自启动
+function setAutoLaunch(enable) {
+  app.setLoginItemSettings({
+    openAtLogin: enable
+  })
+}
+// 查询当前自启动状态
+function isAutoLaunchEnabled() {
+  return app.getLoginItemSettings().openAtLogin
+}
+// 监听渲染进程消息
+ipcMain.on('set-auto-launch', (event, enable) => {
+  setAutoLaunch(enable)
+})
+ipcMain.handle('get-auto-launch', () => {
+  return isAutoLaunchEnabled()
+})
+
 ipcMain.on('window-close', (event, arg) => {
   mainWindow.close()
 })

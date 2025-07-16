@@ -20,6 +20,9 @@ const state = {
   theme: localStore.get('theme') || 'Pomotroid',
   showExerciseReminder: localStore.get('showExerciseReminder') !== undefined
     ? localStore.get('showExerciseReminder')
+    : false,
+  autoLaunch: localStore.get('autoLaunch') !== undefined
+    ? localStore.get('autoLaunch')
     : false
 }
 
@@ -70,6 +73,9 @@ const getters = {
 
   showExerciseReminder() {
     return state.showExerciseReminder
+  },
+  autoLaunch() {
+    return state.autoLaunch
   }
 }
 
@@ -89,6 +95,10 @@ const mutations = {
   SET_SHOW_EXERCISE_REMINDER(state, value) {
     state.showExerciseReminder = value
     localStore.set('showExerciseReminder', value)
+  },
+  SET_AUTO_LAUNCH(state, value) {
+    state.autoLaunch = value
+    localStore.set('autoLaunch', value)
   }
 }
 
@@ -107,6 +117,9 @@ const actions = {
 
   setShowExerciseReminder({ commit }, value) {
     commit('SET_SHOW_EXERCISE_REMINDER', value)
+  },
+  setAutoLaunch({ commit }, value) {
+    commit('SET_AUTO_LAUNCH', value)
   }
 }
 

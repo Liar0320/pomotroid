@@ -16,7 +16,7 @@
       </svg>
       <span class="Settings-header-title">Focus &amp; Break Settings</span>
     </div>
-    <!-- 未实现-Show Exercise Reminders During Rest（在休息时显示锻炼提醒）-功能未实现 -->
+    <!-- Show Exercise Reminders During Rest-->
     <div class="Setting-wrapper">
       <p class="Setting-title">Show Exercise Reminders During Rest</p>
       <div class="Checkbox" @click="selectShowExerciseReminder"
@@ -117,8 +117,7 @@
     <!-- 未实现-Auto-launch on Login（登录时自启动） -->
     <div class="Setting-wrapper">
       <p class="Setting-title">Auto-launch on Login</p>
-      <div class="Checkbox" @click="selectAutoStartBreakTimer"
-        :class="autoStartBreakTimer ? 'is-active' : 'is-inactive'"></div>
+      <div class="Checkbox" @click="selectAutoLaunch" :class="autoLaunch ? 'is-active' : 'is-inactive'"></div>
     </div>
     <!-- 未实现-Language（语言切换功能） -->
     <div class="Setting-wrapper">
@@ -166,8 +165,17 @@ import ShortcutInput from '../ShortcutInput'
 
 export default {
   name: 'Drawer-settings',
+  created() {
+    this.$electron.ipcRenderer.invoke('get-auto-launch').then(val => {
+      this.$store.dispatch('setAutoLaunch', val)
+      this.$store.dispatch('setSetting', { key: 'autoLaunch', val })
+    })
+  },
 
   computed: {
+    autoLaunch() {
+      return this.$store.getters.autoLaunch
+    },
     showExerciseReminder() {
       return this.$store.getters.showExerciseReminder
     },
@@ -217,6 +225,12 @@ export default {
   },
 
   methods: {
+    async selectAutoLaunch() {
+      const newVal = !this.autoLaunch
+      this.$electron.ipcRenderer.send('set-auto-launch', newVal)
+      this.$store.dispatch('setAutoLaunch', newVal)
+      this.$store.dispatch('setSetting', { key: 'autoLaunch', val: newVal })
+    },
     selectShowExerciseReminder() {
       const payload = {
         key: 'showExerciseReminder',
