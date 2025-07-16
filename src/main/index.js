@@ -8,7 +8,8 @@ import {
   BrowserWindow,
   ipcMain,
   Tray,
-  nativeImage
+  nativeImage,
+  screen
 } from 'electron'
 import { init as websocketInit } from './sockets'
 
@@ -276,13 +277,17 @@ function createExerciseWindow(message = '请休息一下，做几次深呼吸。
   if (exerciseWindow) {
     exerciseWindow.destroy()
   }
-  // 获取主窗口位置和尺寸，计算弹窗居中坐标
-  const [mainX, mainY] = mainWindow.getPosition()
-  const [mainWidth, mainHeight] = mainWindow.getSize()
-  const popupWidth = 1280
-  const popupHeight = 800
-  const popupX = mainX + Math.round((mainWidth - popupWidth) / 2)
-  const popupY = mainY + Math.round((mainHeight - popupHeight) / 2)
+
+  // 获取主屏幕的尺寸，让弹窗固定在屏幕正中间
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { width: screenWidth, height: screenHeight } = primaryDisplay.workAreaSize
+
+  // 弹窗占屏幕大小的80%
+  const popupWidth = Math.round(screenWidth * 0.8)
+  const popupHeight = Math.round(screenHeight * 0.8)
+  // 计算屏幕正中间的坐标
+  const popupX = Math.round((screenWidth - popupWidth) / 2)
+  const popupY = Math.round((screenHeight - popupHeight) / 2)
 
   // 获取主窗口的主题色变量并传递给弹窗
   mainWindow.webContents.executeJavaScript(
@@ -314,15 +319,13 @@ function createExerciseWindow(message = '请休息一下，做几次深呼吸。
       // console.log('exerciseWindow 已关闭')
       exerciseWindow = null
     })
-    // 主进程定时强制关闭弹窗
-    setTimeout(() => {
-      if (exerciseWindow) {
-        // console.log('主进程定时器触发，强制关闭exerciseWindow')
-        exerciseWindow.destroy()
-        // console.log('已执行 exerciseWindow.destroy()')
-        exerciseWindow = null
-      }
-    }, duration * 1000)
+    // 主进程定时强制关闭弹窗（已删除）
+    // setTimeout(() => {
+    //   if (exerciseWindow) {
+    //     exerciseWindow.destroy()
+    //     exerciseWindow = null
+    //   }
+    // }, duration * 1000)
   })
 }
 
@@ -332,14 +335,16 @@ ipcMain.on('show-exercise-reminder', (event, { message, duration }) => {
   createExerciseWindow(message, duration)
 })
 
+ipcMain.on('exercise-remaining-update', (event, seconds) => {
+  if (exerciseWindow) {
+    exerciseWindow.webContents.send('exercise-remaining-update', seconds)
+  }
+})
+
 ipcMain.on('close-exercise-window', () => {
-  // console.log('收到关闭弹窗请求')
   if (exerciseWindow) {
     exerciseWindow.destroy()
-    // console.log('已执行 exerciseWindow.destroy()')
     exerciseWindow = null
-  } else {
-    // console.log('exerciseWindow 不存在')
   }
 })
 

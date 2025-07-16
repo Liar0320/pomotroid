@@ -255,6 +255,14 @@ export default {
             elapsed: message.data.elapsed,
             total: message.data.totalSeconds
           })
+          // 新增：短休息/长休息时每秒推送剩余时间到主进程
+          if (window.require) {
+            const { ipcRenderer } = window.require('electron')
+            if (this.currentRound === 'short-break' || this.currentRound === 'long-break') {
+              const seconds = this.timeRemaining.remainingMinutes * 60 + parseInt(this.timeRemaining.remainingSeconds)
+              ipcRenderer.send('exercise-remaining-update', seconds)
+            }
+          }
           break
         default:
           break
@@ -354,6 +362,14 @@ export default {
       EventBus.$emit('timer-completed')
     })
 
+    // 新增：倒计时结束时通知主进程关闭弹窗
+    EventBus.$on('timer-completed', () => {
+      if (window.require) {
+        const { ipcRenderer } = window.require('electron')
+        ipcRenderer.send('close-exercise-window')
+      }
+    })
+
     ipcRenderer.on('event-bus', (event, arg) => {
       // Event Bus events from main
       logger.info(`event-bus ${arg}`)
@@ -363,9 +379,8 @@ export default {
     if (window.require) {
       const { ipcRenderer } = window.require('electron')
       ipcRenderer.on('skip-break-round', () => {
-        // 触发跳过休息轮次
-        this.$emit('timer-completed')
-        // 或 EventBus.$emit('timer-completed')，根据你的实际实现
+        // 触发跳过休息轮次，使用EventBus事件而不是$emit
+        EventBus.$emit('timer-completed')
       })
     }
 
@@ -379,6 +394,34 @@ export default {
       },
       true
     )
+  },
+
+  beforeDestroy() {
+    // 清理EventBus监听器
+    EventBus.$off('timer-init')
+    EventBus.$off('call-timer-reset')
+    EventBus.$off('call-timer-toggle')
+    EventBus.$off('call-timer-skip')
+
+    // 清理IPC监听器
+    if (window.require) {
+      const { ipcRenderer } = window.require('electron')
+      ipcRenderer.removeAllListeners('event-bus')
+      ipcRenderer.removeAllListeners('skip-break-round')
+    }
+
+    // 清理Worker
+    if (this.timerWorker) {
+      this.timerWorker.removeEventListener('message', this.handleMessage)
+      this.timerWorker.terminate()
+    }
+
+    // 清理键盘事件监听器
+    window.removeEventListener('keypress', e => {
+      if (e.code === 'Space') {
+        this.toggleTimer()
+      }
+    }, true)
   }
 }
 </script>

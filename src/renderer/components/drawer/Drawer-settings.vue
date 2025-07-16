@@ -102,7 +102,6 @@
       </svg>
       <span class="Settings-header-title">Basic Settings</span>
     </div>
-    <!-- 最小化到托盘未实现 -->
     <!-- Minimize to Tray -->
     <div class="Setting-wrapper">
       <p class="Setting-title">Minimize to Tray</p>
@@ -114,7 +113,7 @@
       <div class="Checkbox" @click="selectMinToTrayOnClose" :class="minToTrayOnClose ? 'is-active' : 'is-inactive'">
       </div>
     </div>
-    <!-- 未实现-Auto-launch on Login（登录时自启动） -->
+    <!-- Auto-launch on Login（登录时自启动） -->
     <div class="Setting-wrapper">
       <p class="Setting-title">Auto-launch on Login</p>
       <div class="Checkbox" @click="selectAutoLaunch" :class="autoLaunch ? 'is-active' : 'is-inactive'"></div>
