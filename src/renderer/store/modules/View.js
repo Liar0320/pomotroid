@@ -17,7 +17,10 @@ const state = {
   minToTrayOnClose: localStore.get('minToTrayOnClose'),
   notifications: localStore.get('notifications'),
   os: process.platform,
-  theme: localStore.get('theme') || 'Pomotroid'
+  theme: localStore.get('theme') || 'Pomotroid',
+  showExerciseReminder: localStore.get('showExerciseReminder') !== undefined
+    ? localStore.get('showExerciseReminder')
+    : false
 }
 
 const getters = {
@@ -63,6 +66,10 @@ const getters = {
 
   theme() {
     return state.theme
+  },
+
+  showExerciseReminder() {
+    return state.showExerciseReminder
   }
 }
 
@@ -77,6 +84,11 @@ const mutations = {
 
   TOGGLE_DRAWER(state) {
     state.drawerOpen = !state.drawerOpen
+  },
+
+  SET_SHOW_EXERCISE_REMINDER(state, value) {
+    state.showExerciseReminder = value
+    localStore.set('showExerciseReminder', value)
   }
 }
 
@@ -91,6 +103,10 @@ const actions = {
 
   toggleDrawer({ commit }) {
     commit('TOGGLE_DRAWER')
+  },
+
+  setShowExerciseReminder({ commit }, value) {
+    commit('SET_SHOW_EXERCISE_REMINDER', value)
   }
 }
 

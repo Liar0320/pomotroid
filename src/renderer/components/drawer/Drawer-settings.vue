@@ -19,8 +19,8 @@
     <!-- 未实现-Show Exercise Reminders During Rest（在休息时显示锻炼提醒）-功能未实现 -->
     <div class="Setting-wrapper">
       <p class="Setting-title">Show Exercise Reminders During Rest</p>
-      <div class="Checkbox" @click="selectAutoStartBreakTimer"
-        :class="autoStartBreakTimer ? 'is-active' : 'is-inactive'"></div>
+      <div class="Checkbox" @click="selectShowExerciseReminder"
+        :class="showExerciseReminder ? 'is-active' : 'is-inactive'"></div>
     </div>
     <!-- Auto-start Work Timer -->
     <div class="Setting-wrapper">
@@ -168,6 +168,9 @@ export default {
   name: 'Drawer-settings',
 
   computed: {
+    showExerciseReminder() {
+      return this.$store.getters.showExerciseReminder
+    },
     alwaysOnTop() {
       return this.$store.getters.alwaysOnTop
     },
@@ -214,6 +217,14 @@ export default {
   },
 
   methods: {
+    selectShowExerciseReminder() {
+      const payload = {
+        key: 'showExerciseReminder',
+        val: !this.showExerciseReminder
+      }
+      this.$store.dispatch('setSetting', payload)
+      this.$store.dispatch('setViewState', payload)
+    },
     selectAlwaysOnTop() {
       const payload = {
         key: 'alwaysOnTop',
