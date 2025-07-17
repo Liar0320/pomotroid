@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <app-titlebar />
+    <app-titlebar :titleText="computedTitle" :titleColor="computedTitleColor" />
     <transition name="slide-left" mode="out-in">
       <app-drawer v-if="drawerOpen" />
     </transition>
-    <app-timer />
+    <app-timer v-if="!drawerOpen" />
     <app-notification-win v-if="os === 'win32' && notifications" />
     <app-notification v-else-if="os !== 'win32' && notifications" />
   </div>
@@ -49,6 +49,32 @@ export default {
 
     theme() {
       return this.$store.getters.theme
+    },
+
+    currentDrawer() {
+      return this.$store.getters.currentDrawer
+    },
+
+    computedTitle() {
+      if (this.drawerOpen) {
+        switch (this.currentDrawer) {
+          case 'appDrawerTimer':
+            return this.$t('app.title.timer')
+          case 'appDrawerSettings':
+            return this.$t('app.title.settings')
+          case 'appDrawerTheme':
+            return this.$t('app.title.themes')
+          case 'appDrawerAbout':
+            return this.$t('app.title.about')
+          default:
+            return this.$t('app.title.pomotroid')
+        }
+      }
+      return this.$t('app.title.pomotroid')
+    },
+
+    computedTitleColor() {
+      return ''
     }
   },
 

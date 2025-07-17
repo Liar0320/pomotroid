@@ -1,7 +1,7 @@
 <template>
   <nav class="Titlebar">
     <!-- menu -->
-    <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single" style="position: absolute;" title="Settings"
+    <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single" style="position: absolute;" :title="$t('titlebar.settings')"
       @click="toggleDrawer">
       <div class="Menu-wrapper" :class="drawerOpen ? 'is-collapsed' : ''">
         <!-- 默认状态的svg图标 -->
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <h1 class="Title">Pomotroid</h1>
+    <h1 class="Title">{{ titleText }}</h1>
 
     <div class="Icon-group" style="position: absolute; top: 0; right: 0;">
       <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--double--left" style="padding-left: 18px"
@@ -46,6 +46,12 @@
 import { ipcRenderer } from 'electron'
 
 export default {
+  props: {
+    titleText: {
+      type: String,
+      default: 'Pomotroid'
+    }
+  },
   computed: {
     drawerOpen() {
       return this.$store.getters.drawerOpen
@@ -113,7 +119,7 @@ export default {
 }
 
 .Title {
-  color: var(--color-short-round);
+  color: #FF9041;
   font-size: 1rem;
   font-weight: 200;
   padding-top: 18px;

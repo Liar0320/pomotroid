@@ -75,11 +75,11 @@ export default {
 
     currentRoundDisplay() {
       if (this.currentRound === 'work') {
-        return 'Focus'
+        return this.$t('timer.focus')
       } else if (this.currentRound === 'short-break') {
-        return 'Short Break'
+        return this.$t('timer.shortBreak')
       } else if (this.currentRound === 'long-break') {
-        return 'Long Break'
+        return this.$t('timer.longBreak')
       }
     },
 
@@ -92,6 +92,7 @@ export default {
         return 'Dial-fill--longBreak'
       }
     }
+
   },
 
   methods: {

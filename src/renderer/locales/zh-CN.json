@@ -1,0 +1,103 @@
+{
+  "language": "语言",
+  "hello": "你好",
+  "about": {
+    "version": "版本",
+    "releaseNotes": "(更新日志)",
+    "licenseAndDocs": "许可证和文档"
+  },
+  "menu": {
+    "timerConfiguration": "计时器配置",
+    "options": "选项",
+    "themes": "主题",
+    "about": "关于"
+  },
+  "settings": {
+    "focusAndBreak": {
+      "title": "专注和休息设置",
+      "showExerciseReminders": "休息时显示锻炼提醒",
+      "autoStartWorkTimer": "自动开始工作计时器",
+      "autoStartBreakTimer": "自动开始休息计时器",
+      "alwaysOnTop": "专注时窗口置顶",
+      "deactivateAlwaysOnTopOnBreaks": "休息时取消窗口置顶"
+    },
+    "notificationsAndDisplay": {
+      "title": "通知和显示",
+      "tickSoundsWork": "工作时播放滴答声",
+      "tickSoundsBreak": "休息时播放滴答声",
+      "showReminderInDND": "在勿扰模式下显示提醒",
+      "desktopNotifications": "桌面通知"
+    },
+    "basic": {
+      "title": "基本设置",
+      "minimizeToTray": "最小化到托盘",
+      "minimizeToTrayOnClose": "关闭时最小化到托盘",
+      "autoLaunchOnLogin": "登录时自动启动",
+      "language": "语言"
+    },
+    "globalShortcuts": {
+      "title": "全局快捷键",
+      "toggleTimer": "切换计时器",
+      "resetTimer": "重置计时器",
+      "skipRound": "跳过此轮"
+    }
+  },
+  "theme": {
+    "exerciseRemindersScreen": "锻炼提醒屏幕",
+    "name": {
+      "midnightViolet": "午夜紫罗兰",
+      "autumnBlessing": "秋日祝福",
+      "greenCloud": "绿云",
+      "coffeeKiss": "咖啡之吻",
+      "morningGlow": "晨曦"
+    }
+  },
+  "timer": {
+    "focus": "专注",
+    "shortBreak": "短暂休息",
+    "rounds": "回合",
+    "longBreak": "长期休息",
+    "resetDefaults": "重置为默认值",
+    "currentRound": {
+      "work": "专注回合",
+      "shortBreak": "短暂休息",
+      "longBreak": "长期休息"
+    },
+    "exerciseReminder": {
+      "longBreak": "长休息时间到，做个拉伸锻炼吧！",
+      "shortBreak": "短休息时间到，起来活动一下！"
+    }
+  },
+  "footer": {
+    "focusRoundsCompleted": "已完成的专注回合",
+    "resetCurrentRound": "重置当前回合",
+    "reset": "重置",
+    "skipRound": "跳过当前回合",
+    "mute": "静音",
+    "unmute": "取消静音"
+  },
+  "notification": {
+    "focusRoundComplete": "专注回合完成",
+    "longBreak": "开始 {time} 分钟的长休息。",
+    "shortBreak": "开始 {time} 分钟的短休息。",
+    "breakFinished": "休息结束",
+    "focus": "开始专注 {time} 分钟。"
+  },
+  "titlebar": {
+    "settings": "设置"
+  },
+  "app": {
+    "title": {
+      "timer": "计时器",
+      "settings": "设置",
+      "themes": "主题",
+      "about": "关于",
+      "pomotroid": "Pomotroid"
+    }
+  },
+  "exerciseReminder": {
+    "message": "请休息一下，做几次深呼吸。",
+    "countdown": "倒计时：{seconds}秒",
+    "skip": "跳过此次休息"
+  }
+}

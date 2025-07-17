@@ -8,7 +8,8 @@ import {
   BrowserWindow,
   ipcMain,
   Tray,
-  nativeImage
+  nativeImage,
+  screen
 } from 'electron'
 import { init as websocketInit } from './sockets'
 
@@ -93,6 +94,25 @@ ipcMain.on('toggle-minToTray', (event, arg) => {
   } else {
     tray.destroy()
   }
+})
+
+// ====== 开机自启动相关 ======
+// 设置开机自启动
+function setAutoLaunch(enable) {
+  app.setLoginItemSettings({
+    openAtLogin: enable
+  })
+}
+// 查询当前自启动状态
+function isAutoLaunchEnabled() {
+  return app.getLoginItemSettings().openAtLogin
+}
+// 监听渲染进程消息
+ipcMain.on('set-auto-launch', (event, enable) => {
+  setAutoLaunch(enable)
+})
+ipcMain.handle('get-auto-launch', () => {
+  return isAutoLaunchEnabled()
 })
 
 ipcMain.on('window-close', (event, arg) => {
@@ -248,3 +268,93 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
+
+// 在主进程文件末尾添加锻炼弹窗相关代码
+let exerciseWindow = null
+
+function createExerciseWindow(message = '请休息一下，做几次深呼吸。', duration = 30) {
+  console.log('createExerciseWindow 被调用', message, duration)
+  if (exerciseWindow) {
+    exerciseWindow.destroy()
+  }
+
+  // 获取主屏幕的尺寸，让弹窗固定在屏幕正中间
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const { width: screenWidth, height: screenHeight } = primaryDisplay.workAreaSize
+
+  // 弹窗占屏幕大小的80%
+  const popupWidth = Math.round(screenWidth * 0.8)
+  const popupHeight = Math.round(screenHeight * 0.8)
+  // 计算屏幕正中间的坐标
+  const popupX = Math.round((screenWidth - popupWidth) / 2)
+  const popupY = Math.round((screenHeight - popupHeight) / 2)
+
+  // 获取主窗口的主题色变量并传递给弹窗
+  mainWindow.webContents.executeJavaScript(
+    "getComputedStyle(document.documentElement).getPropertyValue('--color-accent-light').trim()"
+  ).then((accentColor) => {
+    const url =
+      process.env.NODE_ENV === 'development'
+        ? `http://localhost:9080/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}`
+        : `file://${__dirname}/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}`
+    exerciseWindow = new BrowserWindow({
+      width: popupWidth,
+      height: popupHeight,
+      x: popupX,
+      y: popupY,
+      resizable: false,
+      frame: false,
+      alwaysOnTop: true,
+      backgroundColor: '#00000000', // 透明
+      transparent: true,
+      parent: mainWindow, // 让弹窗在主窗口之上
+      modal: false,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false
+      }
+    })
+    exerciseWindow.loadURL(url)
+    exerciseWindow.on('closed', () => {
+      // console.log('exerciseWindow 已关闭')
+      exerciseWindow = null
+    })
+    // 主进程定时强制关闭弹窗（已删除）
+    // setTimeout(() => {
+    //   if (exerciseWindow) {
+    //     exerciseWindow.destroy()
+    //     exerciseWindow = null
+    //   }
+    // }, duration * 1000)
+  })
+}
+
+// 监听渲染进程的 IPC 触发
+ipcMain.on('show-exercise-reminder', (event, { message, duration }) => {
+  // console.log('收到 show-exercise-reminder IPC', message, duration)
+  createExerciseWindow(message, duration)
+})
+
+ipcMain.on('exercise-remaining-update', (event, seconds) => {
+  if (exerciseWindow) {
+    exerciseWindow.webContents.send('exercise-remaining-update', seconds)
+  }
+})
+
+ipcMain.on('close-exercise-window', () => {
+  if (exerciseWindow) {
+    exerciseWindow.destroy()
+    exerciseWindow = null
+  }
+})
+
+ipcMain.on('skip-exercise-and-close', () => {
+  // console.log('收到跳过休息请求')
+  if (exerciseWindow) {
+    exerciseWindow.destroy()
+    exerciseWindow = null
+  }
+  if (mainWindow) {
+    mainWindow.webContents.send('skip-break-round')
+  }
+})

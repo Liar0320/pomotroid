@@ -1,9 +1,10 @@
 <template>
   <div class="Container">
-    <p class="Drawer-heading">Timer</p>
     <div class="Setting-wrapper">
-      <p class="Setting-title">Focus</p>
-      <p class="Setting-value">{{ localTimeWork + ':00' }}</p>
+      <div class="Setting-row">
+        <p class="Setting-title">{{ $t('timer.focus') }}</p>
+        <p class="Setting-value">{{ localTimeWork + ':00' }}</p>
+      </div>
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -22,8 +23,10 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="Setting-title">Short Break</p>
-      <p class="Setting-value">{{ localTimeShortBreak + ':00' }}</p>
+      <div class="Setting-row">
+        <p class="Setting-title">{{ $t('timer.shortBreak') }}</p>
+        <p class="Setting-value">{{ localTimeShortBreak + ':00' }}</p>
+      </div>
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -42,8 +45,34 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="Setting-title">Long Break</p>
-      <p class="Setting-value">{{ localTimeLongBreak + ':00' }}</p>
+      <div class="Setting-row">
+        <p class="Setting-title">{{ $t('timer.rounds') }}</p>
+        <p class="Setting-value">{{ localWorkRounds }}</p>
+      </div>
+      <div class="Slider-wrapper">
+        <input
+          type="range"
+          min="1"
+          :max="maxRounds"
+          step="1"
+          class="Slider Slider--blueGrey"
+          v-model.number="localWorkRounds"
+          @change="setWorkRounds"
+        />
+        <div
+          class="Slider-bar  Slider-bar--blueGrey"
+          :style="{
+            width: calcRoundPercentage(localWorkRounds, maxRounds) + '%'
+          }"
+        ></div>
+      </div>
+    </div>
+
+    <div class="Setting-wrapper">
+      <div class="Setting-row">
+        <p class="Setting-title">{{ $t('timer.longBreak') }}</p>
+        <p class="Setting-value">{{ localTimeLongBreak + ':00' }}</p>
+      </div>
       <div class="Slider-wrapper">
         <input
           type="range"
@@ -62,29 +91,7 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="Setting-title">Rounds</p>
-      <p class="Setting-value">{{ localWorkRounds }}</p>
-      <div class="Slider-wrapper">
-        <input
-          type="range"
-          min="1"
-          :max="maxRounds"
-          step="1"
-          class="Slider"
-          v-model.number="localWorkRounds"
-          @change="setWorkRounds"
-        />
-        <div
-          class="Slider-bar Slider-bar--blueGrey"
-          :style="{
-            width: calcRoundPercentage(localWorkRounds, maxRounds) + '%'
-          }"
-        ></div>
-      </div>
-    </div>
-
-    <div class="Setting-wrapper">
-      <p class="TextButton" @click="resetDefaults">Reset Defaults</p>
+      <p class="TextButton" @click="resetDefaults">{{ $t('timer.resetDefaults') }}</p>
     </div>
   </div>
 </template>
@@ -200,28 +207,91 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.Container {
+  max-height: calc(100% - 36px);
+  overflow-y: auto;
+}
 .Setting-wrapper {
-  margin: 10px 0;
-  text-align: center;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 8px 0;
+  padding: 12px;
 }
-
+.Setting-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 6px;
+}
 .Setting-title {
-  color: var(--color-foreground-darkest);
-  font-size: 14px;
+  color: var(--color-foreground-darker);
+  font-size: 16px;
   letter-spacing: 0.05em;
-  margin-bottom: 8px;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 0;
+  color:#FFFFFF;
 }
-
 .Setting-value {
-  background-color: var(--color-background);
+  background-color: #23273a;
   border-radius: 4px;
   display: inline-block;
   font-family: 'RobotoMono', monospace;
-  font-size: 12px;
-  padding: 2px 6px;
+  font-size: 14px;
+  color: #fff;
+  padding: 4px 8px;
+  text-align: center;
+  margin: 0;
+}
+.Slider-wrapper {
+  width: 100%;
+}
+.Slider {
+  width: 100%;
+  height: 3px;
+  &::-webkit-slider-runnable-track {
+    background-color: #44485a;
+    height: 3px;
+  }
+  &::-webkit-slider-thumb {
+    background-color: currentColor;
+    border: none;
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    -webkit-appearance: none;
+    -webkit-app-region: no-drag;
+    transform: translateY(2px);
+  }
+  &::-moz-range-thumb {
+    transform: translateY(2px);
+  }
+}
+.Slider--red {
+  color: var(--color-focus-round);
+}
+.Slider--green {
+  color: var(--color-short-round);
+}
+.Slider--blue {
+  color: var(--color-long-round);
+}
+
+.Slider-bar--blueGrey,
+.Slider--blueGrey {
+  color: #6170A3;
+  background-color: #6170A3;
 }
 
 .TextButton {
-  color: var(--color-foreground-darker);
+  color:#FF9041;
+  text-align: right;
+  margin-right: 0px;
+  margin-top: -3px;
+  font-size: 14px;
+  cursor: pointer;
 }
 </style>

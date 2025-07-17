@@ -1,15 +1,16 @@
 {
-  "name": "GitHub",
+  "name": "Morning Glow",
   "colors": {
-    "--color-long-round": "#6F42C1",
-    "--color-short-round": "#005CC5",
-    "--color-focus-round": "#CD3131",
-    "--color-background": "#FFFFFF",
-    "--color-background-light": "#f6f8fa",
-    "--color-background-lightest": "#24292e",
-    "--color-foreground": "#24292e",
-    "--color-foreground-darker": "#586069",
-    "--color-foreground-darkest": "#80878e",
-    "--color-accent": "#005CC5"
+    "--color-long-round": "#8AE8FC",
+    "--color-short-round": "#4EF97A",
+    "--color-focus-round": "#FE5454",
+    "--color-background": "#282A36",
+    "--color-background-light": "#373745",
+    "--color-background-lightest": "#373745",
+    "--color-foreground": "#d5ced9",
+    "--color-foreground-darker": "#746f77",
+    "--color-foreground-darkest": "#FF9041",
+    "--color-accent": "#FF9041",
+    "--color-accent-light": "#567890"
   }
 }

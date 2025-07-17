@@ -17,7 +17,13 @@ const state = {
   minToTrayOnClose: localStore.get('minToTrayOnClose'),
   notifications: localStore.get('notifications'),
   os: process.platform,
-  theme: localStore.get('theme') || 'Pomotroid'
+  theme: localStore.get('theme') || 'Pomotroid',
+  showExerciseReminder: localStore.get('showExerciseReminder') !== undefined
+    ? localStore.get('showExerciseReminder')
+    : false,
+  autoLaunch: localStore.get('autoLaunch') !== undefined
+    ? localStore.get('autoLaunch')
+    : false
 }
 
 const getters = {
@@ -63,6 +69,13 @@ const getters = {
 
   theme() {
     return state.theme
+  },
+
+  showExerciseReminder() {
+    return state.showExerciseReminder
+  },
+  autoLaunch() {
+    return state.autoLaunch
   }
 }
 
@@ -77,6 +90,15 @@ const mutations = {
 
   TOGGLE_DRAWER(state) {
     state.drawerOpen = !state.drawerOpen
+  },
+
+  SET_SHOW_EXERCISE_REMINDER(state, value) {
+    state.showExerciseReminder = value
+    localStore.set('showExerciseReminder', value)
+  },
+  SET_AUTO_LAUNCH(state, value) {
+    state.autoLaunch = value
+    localStore.set('autoLaunch', value)
   }
 }
 
@@ -91,6 +113,13 @@ const actions = {
 
   toggleDrawer({ commit }) {
     commit('TOGGLE_DRAWER')
+  },
+
+  setShowExerciseReminder({ commit }, value) {
+    commit('SET_SHOW_EXERCISE_REMINDER', value)
+  },
+  setAutoLaunch({ commit }, value) {
+    commit('SET_AUTO_LAUNCH', value)
   }
 }
 

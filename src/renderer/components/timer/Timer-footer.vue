@@ -4,26 +4,26 @@
       <div class="Round-reset-row-strict">
         <span class="Round-main">
           {{ round + '/' + workRounds }}
-          <span v-if="totalWorkRounds > 0" class="Total-rounds" title="Focus rounds completed">({{ totalWorkRounds
+          <span v-if="totalWorkRounds > 0" class="Total-rounds" :title="$t('footer.focusRoundsCompleted')">({{ totalWorkRounds
             }})</span>
         </span>
-        <span class="TextButton Reset-orange" title="Reset current round" @click="callForReset">
-          Reset
+        <span class="TextButton Reset-orange" :title="$t('footer.resetCurrentRound')" @click="callForReset">
+          {{ $t('footer.reset') }}
         </span>
       </div>
     </div>
     <div class="Icon-group">
       <!-- skip -->
-      <div class="Icon-wrapper Icon-wrapper--double--left" title="Skip the current round" @click="skipRound">
+      <div class="Icon-wrapper Icon-wrapper--double--left" :title="$t('footer.skipRound')" @click="skipRound">
         <!-- 跳过按钮的SVG 图标 -->
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Icon--skip">
           <path d="M6 4.80005L14.4 12L6 19.2V4.80005Z" stroke="white" stroke-width="1.66667" stroke-linecap="round"
             stroke-linejoin="round" />
           <path d="M18 6V18" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>
       <!-- mute -->
-      <div class="Icon-wrapper Icon-wrapper--double--right" :title="volume > 0 ? 'Mute' : 'Unmute'" @click="toggleMute"
+      <div class="Icon-wrapper Icon-wrapper--double--right" :title="volume > 0 ? $t('footer.mute') : $t('footer.unmute')" @click="toggleMute"
         @mouseenter="volumeSliderHidden = false">
         <transition name="fade" mode="out-in">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Icon--mute" v-if="localVolume > 0">
@@ -149,66 +149,23 @@ export default {
 
 <style lang="scss" scoped>
 .Footer {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 0;
+  position: relative;
+  height: 56px; // 调整高度更贴合UI
 }
-
-.Icon--mute {
-  width: 24px !important;
-  height: 24px !important;
-  min-width: 24px;
-  min-height: 24px;
-  max-width: 24px;
-  max-height: 24px;
-  display: inline-block;
-  & path {
-    transition: $transitionDefault;
-  }
-}
-
-.Icon--muted {
-  & path {
-    transition: $transitionDefault;
-  }
-}
-
-.Icon-wrapper {
-  &:hover .Icon--muted path:first-child {
-    fill: var(--color-accent);
-  }
-  &:hover .Icon--mute path {
-    fill: var(--color-accent);
-  }
-  &:hover .Icon--skip polygon,
-  &:hover .Icon--skip rect {
-    fill: var(--color-accent);
-  }
-}
-
-.Icon--skip {
-  width: 24px !important;
-  height: 24px !important;
-  min-width: 24px;
-  min-height: 24px;
-  max-width: 24px;
-  max-height: 24px;
-  display: inline-block;
-}
-.Icon-wrapper--double--left {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  min-height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .Round-wrapper {
   width: 100%;
   text-align: left;
-  margin-top: 16px; // 新增，数值可根据需要调整
+  margin-bottom: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 48px; // 保证与右侧高度一致
+  display: flex;
+  align-items: flex-end;
 }
 .Round-reset-row {
   display: flex;
@@ -223,15 +180,15 @@ export default {
 }
 .Total-rounds {
   color: var(--color-accent);   // 颜色
-  font-size: 1rem;             // 这里调整(19)的字体大小
+  font-size: 1rem;             // 这里调整(内)的字体大小
   margin-left: 2px;
-  font-weight: 400;             // 可选，调整粗细
+  font-weight: 400;             // 调整粗细
 }
 .Reset-orange {
   color: var(--color-accent);   // 颜色
   font-size: 0.875rem;            // 这里调整Reset的字体大小
   cursor: pointer;
-  font-weight: 400;             // 可选，调整粗细
+  font-weight: 400;             // 调整粗细
 }
 
 .Slider-wrapper {
@@ -260,10 +217,49 @@ export default {
   justify-content: flex-start;
   gap: 12px;
   width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  height: 48px;
 }
 .Icon-group {
   position: absolute;
   right: 0;
-  bottom: 8px; // 新增，向下移动8px，可根据需要调整
+  bottom:-20px; // 原为0，整体下移8px
+  height: 48px;
+  display: flex;
+  align-items: flex-end;
+}
+.Icon--skip {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  display: inline-block;
+}
+.Icon-wrapper--double--left {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Icon--mute {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  display: inline-block;
+}
+.Icon-wrapper--double--right {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

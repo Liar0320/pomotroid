@@ -1,0 +1,103 @@
+{
+  "language": "Language",
+  "hello": "Hello",
+  "about": {
+    "version": "Version",
+    "releaseNotes": "(release notes)",
+    "licenseAndDocs": "License and Documentation"
+  },
+  "menu": {
+    "timerConfiguration": "Timer Configuration",
+    "options": "Options",
+    "themes": "Themes",
+    "about": "About"
+  },
+  "settings": {
+    "focusAndBreak": {
+      "title": "Focus & Break Settings",
+      "showExerciseReminders": "Show Exercise Reminders During Rest",
+      "autoStartWorkTimer": "Auto-start Work Timer",
+      "autoStartBreakTimer": "Auto-start Break Timer",
+      "alwaysOnTop": "Always on Top During Focus",
+      "deactivateAlwaysOnTopOnBreaks": "Deactivate Always On Top on Breaks"
+    },
+    "notificationsAndDisplay": {
+      "title": "Notifications & Display",
+      "tickSoundsWork": "Tick Sounds - Work",
+      "tickSoundsBreak": "Tick Sounds - Break",
+      "showReminderInDND": "Show Reminder in Do Not Disturb Mode",
+      "desktopNotifications": "Desktop Notifications"
+    },
+    "basic": {
+      "title": "Basic Settings",
+      "minimizeToTray": "Minimize to Tray",
+      "minimizeToTrayOnClose": "Minimize to Tray on Close",
+      "autoLaunchOnLogin": "Auto-launch on Login",
+      "language": "Language"
+    },
+    "globalShortcuts": {
+      "title": "Global Shortcuts",
+      "toggleTimer": "Toggle Timer",
+      "resetTimer": "Reset Timer",
+      "skipRound": "Skip Round"
+    }
+  },
+  "theme": {
+    "exerciseRemindersScreen": "Exercise Reminders Screen",
+    "name": {
+      "midnightViolet": "Midnight Violet",
+      "autumnBlessing": "Autumn Blessing",
+      "greenCloud": "Green Cloud",
+      "coffeeKiss": "Coffee Kiss",
+      "morningGlow": "Morning Glow"
+    }
+  },
+  "timer": {
+    "focus": "Focus",
+    "shortBreak": "Short Break",
+    "rounds": "Rounds",
+    "longBreak": "Long Break",
+    "resetDefaults": "Reset Defaults",
+    "currentRound": {
+      "work": "focus round",
+      "shortBreak": "short break",
+      "longBreak": "long break"
+    },
+    "exerciseReminder": {
+      "longBreak": "Time for a long break, how about a stretch?",
+      "shortBreak": "Time for a short break, get up and move around!"
+    }
+  },
+  "footer": {
+    "focusRoundsCompleted": "Focus rounds completed",
+    "resetCurrentRound": "Reset current round",
+    "reset": "Reset",
+    "skipRound": "Skip the current round",
+    "mute": "Mute",
+    "unmute": "Unmute"
+  },
+  "notification": {
+    "focusRoundComplete": "Focus Round Complete",
+    "longBreak": "Begin a {time} minute long break.",
+    "shortBreak": "Begin a {time} minute short break.",
+    "breakFinished": "Break Finished",
+    "focus": "Begin focusing for {time} minutes."
+  },
+  "titlebar": {
+    "settings": "Settings"
+  },
+  "app": {
+    "title": {
+      "timer": "Timer",
+      "settings": "Settings",
+      "themes": "Themes",
+      "about": "About",
+      "pomotroid": "Pomotroid"
+    }
+  },
+  "exerciseReminder": {
+    "message": "Please take a break and do some deep breathing.",
+    "countdown": "Countdown: {seconds} seconds",
+    "skip": "Skip this break"
+  }
+}

@@ -36,12 +36,26 @@ export default {
         EventBus.$emit('ready-long-break')
         logger.info('focus round completed')
         ipcRenderer.send('onBreak', true)
+        // 只在showExerciseReminder为true时弹窗
+        if (this.$store.getters.showExerciseReminder) {
+          ipcRenderer.send('show-exercise-reminder', {
+            message: this.$t('timer.exerciseReminder.longBreak'),
+            duration: this.$store.getters.timeLongBreak * 60 // 秒
+          })
+        }
       } else if (this.currentRound === 'work') {
         this.$store.dispatch('setCurrentRound', 'short-break')
         this.$store.dispatch('incrementTotalWorkRounds')
         EventBus.$emit('ready-short-break')
         logger.info('focus round completed')
         ipcRenderer.send('onBreak', true)
+        // 只在showExerciseReminder为true时弹窗
+        if (this.$store.getters.showExerciseReminder) {
+          ipcRenderer.send('show-exercise-reminder', {
+            message: this.$t('timer.exerciseReminder.shortBreak'),
+            duration: this.$store.getters.timeShortBreak * 60 // 秒
+          })
+        }
       } else if (this.currentRound === 'short-break') {
         this.$store.dispatch('setCurrentRound', 'work')
         this.$store.dispatch('incrementRound')
@@ -68,9 +82,15 @@ export default {
   },
 
   mounted() {
-    EventBus.$on('timer-completed', () => {
+    // 命名回调，便于解绑
+    this._onTimerCompleted = () => {
       this.checkRound()
-    })
+    }
+    EventBus.$on('timer-completed', this._onTimerCompleted)
+  },
+  beforeDestroy() {
+    // 解绑，防止重复注册
+    EventBus.$off('timer-completed', this._onTimerCompleted)
   }
 }
 </script>
