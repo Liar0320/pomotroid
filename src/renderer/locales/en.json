@@ -43,7 +43,14 @@
     }
   },
   "theme": {
-    "exerciseRemindersScreen": "Exercise Reminders Screen"
+    "exerciseRemindersScreen": "Exercise Reminders Screen",
+    "name": {
+      "midnightViolet": "Midnight Violet",
+      "autumnBlessing": "Autumn Blessing",
+      "greenCloud": "Green Cloud",
+      "coffeeKiss": "Coffee Kiss",
+      "morningGlow": "Morning Glow"
+    }
   },
   "timer": {
     "focus": "Focus",

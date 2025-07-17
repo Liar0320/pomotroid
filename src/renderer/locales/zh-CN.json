@@ -43,7 +43,14 @@
     }
   },
   "theme": {
-    "exerciseRemindersScreen": "锻炼提醒屏幕"
+    "exerciseRemindersScreen": "锻炼提醒屏幕",
+    "name": {
+      "midnightViolet": "午夜紫罗兰",
+      "autumnBlessing": "秋日祝福",
+      "greenCloud": "绿云",
+      "coffeeKiss": "咖啡之吻",
+      "morningGlow": "晨曦"
+    }
   },
   "timer": {
     "focus": "专注",

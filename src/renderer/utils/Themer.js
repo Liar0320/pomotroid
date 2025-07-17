@@ -58,6 +58,21 @@ class Themer {
   }
 
   /**
+   * Get the i18n key for a given theme name.
+   *
+   * @param {string} themeName - The raw theme name (e.g., "Midnight Violet").
+   */
+  getI18nKeyForThemeName(themeName) {
+    return themeName.split(' ').map((word, index) => {
+      if (index === 0) {
+        return word.toLowerCase()
+      } else {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      }
+    }).join('')
+  }
+
+  /**
    * Load themes from theme files.
    */
   _load(directories) {

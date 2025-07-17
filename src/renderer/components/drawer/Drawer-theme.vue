@@ -27,7 +27,7 @@
         </svg>
         </span>
       </span>
-      <span class="theme-name">{{ themer.getThemeName(t) }}</span>
+      <span class="theme-name">{{ $t('theme.name.' + themer.getI18nKeyForThemeName(themer.getThemeName(t))) }}</span>
     </div>
   </div>
 </template>
