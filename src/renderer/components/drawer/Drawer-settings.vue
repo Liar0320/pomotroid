@@ -121,13 +121,15 @@
     <!-- 未实现-Language（语言切换功能） -->
     <div class="Setting-wrapper">
       <p class="Setting-title">{{ $t('settings.basic.language') }}</p>
-      <div class="language-select-wrapper"  >
+      <div class="language-select-wrapper">
         <select id="language-select" class="language-select" v-model="$i18n.locale" @change="onLanguageChange">
           <option value="en" selected>English</option>
           <option value="zh-CN">简体中文</option>
-          <option value="ja">日本語</option>
+          <option value="ja">日語</option>
+          <option value="de">Sprache</option>
         </select>
-        <svg class="select-arrow" width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="select-arrow" width="16" height="9" viewBox="0 0 16 9" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L8 8L15 1" stroke="#6170A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </div>

@@ -40,7 +40,8 @@ export default {
         if (this.$store.getters.showExerciseReminder) {
           ipcRenderer.send('show-exercise-reminder', {
             message: this.$t('timer.exerciseReminder.longBreak'),
-            duration: this.$store.getters.timeLongBreak * 60 // 秒
+            duration: this.$store.getters.timeLongBreak * 60, // 秒
+            breakType: 'long'
           })
         }
       } else if (this.currentRound === 'work') {
@@ -53,7 +54,8 @@ export default {
         if (this.$store.getters.showExerciseReminder) {
           ipcRenderer.send('show-exercise-reminder', {
             message: this.$t('timer.exerciseReminder.shortBreak'),
-            duration: this.$store.getters.timeShortBreak * 60 // 秒
+            duration: this.$store.getters.timeShortBreak * 60, // 秒
+            breakType: 'short'
           })
         }
       } else if (this.currentRound === 'short-break') {

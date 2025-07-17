@@ -1,7 +1,7 @@
 <template>
   <div class="exercise-reminder">
     <div class="reminder-content">
-      <h2>{{ message }}</h2>
+      <h2>{{ randomTip }}</h2>
       <div class="progress-bar-bg">
         <div class="progress-bar" :style="{ width: percent + '%' }"></div>
       </div>
@@ -27,7 +27,9 @@ export default {
       seconds: 30,
       total: 30,
       timer: null,
-      bgColor: ''
+      bgColor: '',
+      breakType: 'short',
+      randomTip: ''
     }
   },
   computed: {
@@ -53,11 +55,41 @@ export default {
       if (params.get('color')) {
         this.bgColor = params.get('color')
       }
+      if (params.get('breakType')) {
+        this.breakType = params.get('breakType')
+      }
+    },
+    getRandomTip() {
+      try {
+        const ideasKey = this.breakType === 'long' ? 'longBreakIdeas' : 'miniBreakIdeas'
+        const ideas = this.$i18n.messages[this.$i18n.locale][ideasKey]
+        if (!ideas) {
+          console.warn(`未找到 ${ideasKey} 翻译内容`)
+          return this.message || this.$t('exerciseReminder.message')
+        }
+        const keys = Object.keys(ideas)
+        if (keys.length === 0) {
+          console.warn(`${ideasKey} 为空`)
+          return this.message || this.$t('exerciseReminder.message')
+        }
+        const randomKey = keys[Math.floor(Math.random() * keys.length)]
+        const randomIdea = ideas[randomKey]
+        if (randomIdea && randomIdea.text) {
+          return randomIdea.text
+        } else {
+          console.warn(`随机选择的 ${randomKey} 没有text属性`)
+          return this.message || this.$t('exerciseReminder.message')
+        }
+      } catch (error) {
+        console.error('获取随机提示语时出错:', error)
+        return this.message || this.$t('exerciseReminder.message')
+      }
     }
   },
   mounted() {
-    this.message = this.$t('exerciseReminder.message')
     this.parseQuery()
+    // 生成随机提示语
+    this.randomTip = this.getRandomTip()
     if (window.require) {
       const { ipcRenderer } = window.require('electron')
       ipcRenderer.on('exercise-remaining-update', (event, seconds) => {
@@ -100,8 +132,8 @@ html, body {
   position: relative;
 }
 .reminder-content {
-  width: 80%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 100%;
   text-align: center;
   color: #fff;
   position: relative;
