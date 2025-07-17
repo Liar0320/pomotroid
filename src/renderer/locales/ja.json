@@ -1,103 +1,364 @@
 {
-  "language": "言語",
-  "hello": "こんにちは",
+  "language": "日語",
   "about": {
-    "version": "Version",
-    "releaseNotes": "(release notes)",
-    "licenseAndDocs": "License and Documentation"
+    "version": "バージョン",
+    "releaseNotes": "更新日志",
+    "licenseAndDocs": "ライセンスとドキュメント"
   },
   "menu": {
-    "timerConfiguration": "Timer Configuration",
-    "options": "Options",
-    "themes": "Themes",
-    "about": "About"
+    "timerConfiguration": "タイマー設定",
+    "options": "オプション",
+    "themes": "テーマ",
+    "about": "概要"
   },
   "settings": {
     "focusAndBreak": {
-      "title": "Focus & Break Settings",
-      "showExerciseReminders": "Show Exercise Reminders During Rest",
-      "autoStartWorkTimer": "Auto-start Work Timer",
-      "autoStartBreakTimer": "Auto-start Break Timer",
-      "alwaysOnTop": "Always on Top During Focus",
-      "deactivateAlwaysOnTopOnBreaks": "Deactivate Always On Top on Breaks"
+      "title": "集中と休憩の設定",
+      "showExerciseReminders": "休憩時にストレッチのリマインダーを表示",
+      "autoStartWorkTimer": "作業タイマーを自動開始",
+      "autoStartBreakTimer": "休憩タイマーを自動開始",
+      "alwaysOnTop": "集中中はウィンドウを最前面に表示",
+      "deactivateAlwaysOnTopOnBreaks": "休憩中に最前面表示を解除"
     },
     "notificationsAndDisplay": {
-      "title": "Notifications & Display",
-      "tickSoundsWork": "Tick Sounds - Work",
-      "tickSoundsBreak": "Tick Sounds - Break",
-      "showReminderInDND": "Show Reminder in Do Not Disturb Mode",
-      "desktopNotifications": "Desktop Notifications"
+      "title": "通知と表示",
+      "tickSoundsWork": "作業時にティック音を再生",
+      "tickSoundsBreak": "休憩時にティック音を再生",
+      "showReminderInDND": "「取り込み禁止」モード中でもリマインダーを表示",
+      "desktopNotifications": "デスクトップ通知"
     },
     "basic": {
-      "title": "Basic Settings",
-      "minimizeToTray": "Minimize to Tray",
-      "minimizeToTrayOnClose": "Minimize to Tray on Close",
-      "autoLaunchOnLogin": "Auto-launch on Login",
-      "language": "Language"
+      "title": "基本設定",
+      "minimizeToTray": "トレイに最小化",
+      "minimizeToTrayOnClose": "閉じるときにトレイに最小化",
+      "autoLaunchOnLogin": "ログイン時に自動起動",
+      "language": "言語"
     },
     "globalShortcuts": {
-      "title": "Global Shortcuts",
-      "toggleTimer": "Toggle Timer",
-      "resetTimer": "Reset Timer",
-      "skipRound": "Skip Round"
+      "title": "グローバルショートカット",
+      "toggleTimer": "タイマーの開始/停止",
+      "resetTimer": "タイマーをリセット",
+      "skipRound": "このラウンドをスキップ"
     }
   },
   "theme": {
-    "exerciseRemindersScreen": "Exercise Reminders Screen",
+    "exerciseRemindersScreen": "ストレッチリマインダースクリーン",
     "name": {
-      "midnightViolet": "Midnight Violet",
-      "autumnBlessing": "Autumn Blessing",
-      "greenCloud": "Green Cloud",
-      "coffeeKiss": "Coffee Kiss",
-      "morningGlow": "Morning Glow"
+      "midnightViolet": "ミッドナイトバイオレット",
+      "autumnBlessing": "秋の祝福",
+      "greenCloud": "グリーンクラウド",
+      "coffeeKiss": "コーヒー・キス",
+      "morningGlow": "朝焼け"
     }
   },
   "timer": {
-    "focus": "Focus",
-    "shortBreak": "Short Break",
-    "rounds": "Rounds",
-    "longBreak": "Long Break",
-    "resetDefaults": "Reset Defaults",
+    "focus": "集中",
+    "shortBreak": "短い休憩",
+    "rounds": "ラウンド数",
+    "longBreak": "長い休憩",
+    "resetDefaults": "デフォルトにリセット",
     "currentRound": {
-      "work": "focus round",
-      "shortBreak": "short break",
-      "longBreak": "long break"
+      "work": "集中ラウンド",
+      "shortBreak": "短い休憩",
+      "longBreak": "長い休憩"
     },
     "exerciseReminder": {
-      "longBreak": "Time for a long break, how about a stretch?",
-      "shortBreak": "Time for a short break, get up and move around!"
+      "longBreak": "長い休憩です。ストレッチしましょう！",
+      "shortBreak": "短い休憩です。軽く体を動かしましょう！"
     }
   },
   "footer": {
-    "focusRoundsCompleted": "Focus rounds completed",
-    "resetCurrentRound": "Reset current round",
-    "reset": "Reset",
-    "skipRound": "Skip the current round",
-    "mute": "Mute",
-    "unmute": "Unmute"
+    "focusRoundsCompleted": "完了した集中ラウンド数",
+    "resetCurrentRound": "現在のラウンドをリセット",
+    "reset": "リセット",
+    "skipRound": "現在のラウンドをスキップ",
+    "mute": "ミュート",
+    "unmute": "ミュート解除"
   },
   "notification": {
-    "focusRoundComplete": "Focus Round Complete",
-    "longBreak": "Begin a {time} minute long break.",
-    "shortBreak": "Begin a {time} minute short break.",
-    "breakFinished": "Break Finished",
-    "focus": "Begin focusing for {time} minutes."
+    "focusRoundComplete": "集中ラウンドが完了しました",
+    "longBreak": "{time}分の長い休憩を開始します。",
+    "shortBreak": "{time}分の短い休憩を開始します。",
+    "breakFinished": "休憩が終了しました",
+    "focus": "集中を {time} 分間開始します。"
   },
   "titlebar": {
-    "settings": "Settings"
+    "settings": "設定"
   },
   "app": {
     "title": {
-      "timer": "Timer",
-      "settings": "Settings",
-      "themes": "Themes",
-      "about": "About",
+      "timer": "タイマー",
+      "settings": "設定",
+      "themes": "テーマ",
+      "about": "概要",
       "pomotroid": "Pomotroid"
     }
   },
   "exerciseReminder": {
-    "message": "Please take a break and do some deep breathing.",
-    "countdown": "Countdown: {seconds} seconds",
-    "skip": "Skip this break"
-  }
+    "message": "少し休憩して、深呼吸をしてください。",
+    "countdown": "カウントダウン：{seconds}秒",
+    "skip": "この休憩をスキップ"
+  },
+  "miniBreakIdeas": {
+      "aaa": {
+        "text": "コップ一杯の水を飲みに行きましょう。"
+      },
+      "abd": {
+        "text": "目を閉じてゆっくり左に目を動かし、次にゆっくり右に動かします。"
+      },
+      "aai": {
+        "text": "頭をゆっくり片方に向け、10秒間そのままでいきます。"
+      },
+      "aab": {
+        "text": "ゆっくり左を見て、次に右を見ます。"
+      },
+      "aac": {
+        "text": "ゆっくり上を見て、次に下を見ます。"
+      },
+      "aad": {
+        "text": "目を閉じて深呼吸を数回しましょう。"
+      },
+      "aae": {
+        "text": "目を閉じてリラックスしてください。"
+      },
+      "aaf": {
+        "text": "足を伸ばしてストレッチします。"
+      },
+      "aag": {
+        "text": "腕を伸ばしてストレッチします。"
+      },
+      "aah": {
+        "text": "座っている姿勢は正しいですか？"
+      },
+      "aaj": {
+        "text": "ゆっくり片方に首を傾けて5〜10秒間そのままでいます。"
+      },
+      "aak": {
+        "text": "椅子から立ち上がり、体を伸ばします。"
+      },
+      "aal": {
+        "text": "少なくとも20メートル離れた物に視線を合わせます。"
+      },
+      "aam": {
+        "text": "感謝していることについて少し考えてみましょう。"
+      },
+      "aan": {
+        "text": "生きていることに感謝して微笑んでみましょう。"
+      },
+      "aao": {
+        "text": "本当に人間工学に基づいたワークステーションとは、頻繁に離れることのできるものです。"
+      },
+      "aap": {
+        "text": "目を閉じて呼吸の回数を数えてみましょう。"
+      },
+      "aaq": {
+        "text": "目を閉じて周囲で聞こえる音を言ってみましょう。"
+      },
+      "aar": {
+        "text": "手のひらを肩に置き、10秒間前後に肩を回します。"
+      },
+      "aas": {
+        "text": "右腕を上げて頭の上で左に伸ばし、10秒間保ちます。もう一方も同様に行います。"
+      },
+      "aat": {
+        "text": "右手を使って左手の指一本ずつを押さえ、もう一方も同様に行います。"
+      },
+      "aau": {
+        "text": "立ち上がってランジの姿勢を取り、10秒間保ちます。その後反対の脚でも行います。"
+      },
+      "aav": {
+        "text": "目を閉じて今この瞬間に無理なく意識を向けてください。"
+      },
+      "aaw": {
+        "text": "20分ごとに、20フィート（約6メートル）先の物に20秒間集中してください。"
+      },
+      "aax": {
+        "text": "助けが必要であれば、遠慮なく求めてください。"
+      },
+      "aay": {
+        "text": "一度に一つのことだけを行いましょう。"
+      },
+      "aaz": {
+        "text": "あなたの注意力は賢く使われていますか？"
+      },
+      "aba": {
+        "text": "座り方を変えてみましょう。"
+      },
+      "abb": {
+        "text": "目を自然光にさらしましょう。"
+      },
+      "abc": {
+        "text": "目を閉じてゆっくり目を天井に向ける→床に向ける動作を行います。"
+      },
+      "abe": {
+        "text": "手を振ってリラックスしましょう。"
+      },
+      "abf": {
+        "text": "親指と一つずつ他の指を触れ合わせてO字を作ります。"
+      },
+      "abg": {
+        "text": "拳を握った後、止める合図のように指を天井に向けて広げます。"
+      },
+      "abh": {
+        "text": "拳を握った後、指をできる限り広げて伸ばします。"
+      },
+      "abi": {
+        "text": "背筋を伸ばして座り、両腕を体側に下げたまま首を大きな円を描くようにゆっくり回します。"
+      },
+      "abj": {
+        "text": "真っ直ぐ立ち、片方の肩に頭をゆっくり傾け、伸びを感じたらその状態を保ちます。"
+      },
+      "abk": {
+        "text": "真っ直ぐ立ち、両腕を体側に下ろしたまま肩甲骨を引き寄せ、その状態を保ちます。"
+      },
+      "abl": {
+        "text": "真っ直ぐ立ち、腕を上げてゆっくり手を後ろに動かし、1秒間保ちます。そして元に戻します。"
+      },
+      "abn": {
+        "text": "立ち上がって、片方の足を椅子や踏み台などに乗せます。膝を曲げたまま10〜15秒間保ち、もう一方の足でも繰り返します。"
+      },
+      "abt": {
+        "text": "片方の腕をまっすぐ上に上げ、もう片方の手で肘を優しく頭の方へ押し付けます。10〜15秒間保ち、もう片方の腕でも同じことをします。"
+      },
+      "abq": {
+        "text": "壁に向かい、両手を壁につけ、何回か腕立て伏せを行います。"
+      },
+      "abr": {
+        "text": "椅子の端に座り、片方の脚を前に伸ばして10〜15秒間保ち、もう片方の脚でも繰り返します。"
+      },
+      "abs": {
+        "text": "壁に向かい、片方の足を前に、もう片方の足を後ろに置いてゆっくり壁に向かって傾きます。そしてもう片方の足でも繰り返します。"
+      },
+      "abm": {
+        "text": "椅子または床の端に座り、体を片方にねじり10〜15秒間保ち、反対側でも繰り返します。"
+      },
+      "abo": {
+        "text": "足を肩幅に開いて立ち、まるで椅子に座るような感じでしゃがんでから立ち上がります。これを何度も繰り返します。"
+      },
+      "abp": {
+        "text": "壁に背を向け、壁に両手をつき、腕を上下にゆっくり振り、雪の天使を作るかのように動かします。"
+      },
+      "abu": {
+        "text": "頭を片方に傾け、次にもう片方に傾け、そしてゆっくり前後に傾けます。"
+      },
+      "abv": {
+        "text": "片方の腕を胸の前で横に伸ばし、もう片方の手で肘を優しく胸の方へ引きます。もう片方の腕でも繰り返します。"
+      },
+      "abw": {
+        "text": "立ち上がって、片方の足を椅子や踏み台などに乗せ、つま先に触れるように屈みます。もう片方の足でも繰り返します。"
+      },
+      "abx": {
+        "text": "ドアフレームに立ち、両手をドアの両サイドにつけ、ゆっくり前へ傾き、胸に伸びを感じます。"
+      },
+      "aby": {
+        "text": "椅子または床の端に座り、足をそろえて肘で内腿筋肉を軽く押しつけます。"
+      }
+    },
+  "longBreakIdeas": {
+      "abf": {
+        "text": "座っているとき、机の端近くに肘をつき、体を前に傾け、手で目を覆います。目を閉じて鼻からゆっくり息を吸い込み、数秒間止め続け深呼吸します。"
+      },
+      "aar": {
+        "text": "少量の定期的な運動には、ストレスの軽減を含む顕著な健康上の利点があるという証拠があります。"
+      },
+      "aaa": {
+        "text": "一人で休憩するのが難しいと感じますか？同僚と一緒に休憩してみてください。休憩を守りやすくなるだけでなく、彼らのことをもっと知る機会になります。一緒に休憩すると生産性も高まります。"
+      },
+      "aab": {
+        "text": "あなたの脳が問題を独立して解決することに気づいたことがありますか？パソコンから離れて、ちょっとした関係のないことを考えながら休憩してみてください。"
+      },
+      "aac": {
+        "text": "休息は筋骨格系のパフォーマンスを確保する重要な一部です。定期的な休憩はタスクの所要時間を短縮し、人体工学による怪我のリスクを減らします。"
+      },
+      "aad": {
+        "text": "マインドフルネスに基づく練習は不安、うつ病、ストレス、痛みを軽減し、全体的な健康、精神的な幸福感、生活の質を改善することが研究で示されています。どこから始めればよいか分からない場合は、多くのアプリが役立ちます。"
+      },
+      "aae": {
+        "text": "長時間画面を見続けると瞬きの回数が減り、目が空気にさらされる原因となります。数秒間速く瞬きすることで涙膜を更新し、目に付着したほこりを取り除きます。"
+      },
+      "aaf": {
+        "text": "キーボードやマウス、モニター、作業台の高さや角度が不適切であると健康問題を引き起こす可能性があります。デスクワークにおける人体工学について学ぶ時間を取りましょう。"
+      },
+      "aag": {
+        "text": "オフィスで運動する方法は多くあります。例えば、場所を変えながら歩くことや机での腕立て伏せがあります。"
+      },
+      "aah": {
+        "text": "安定ボールや立って作業する机を持っていますか？オフィスチェアの代わりに一時的にそれらを使用してみてください。"
+      },
+      "aai": {
+        "text": "ぼんやりしたり集中できなかったりしませんか？それは休憩が必要なサインです。"
+      },
+      "aaj": {
+        "text": "テクノロジーを使わない散歩はどうでしょうか？"
+      },
+      "aak": {
+        "text": "最近の研究では、長時間座っていることが代謝症候群、心臓発作、脳卒中、全死亡率などのリスクを増加させることが明らかになりました。定期的なウォーキング休憩は血流を改善し、これらの問題に対処するのに役立ちます。"
+      },
+      "aal": {
+        "text": "ミーティングを会議室から廊下に移してみませんか？歩くことでカロリーを消費し、協力体制を促進します。"
+      },
+      "aam": {
+        "text": "果物をゆっくり味わって食べましょう。その味、感触、新鮮さを感じてください。"
+      },
+      "aan": {
+        "text": "トイレに行くときは職場で最も遠いトイレに行ってみてください。"
+      },
+      "aao": {
+        "text": "コーヒーブレイクですか？行くたびに5分歩いてみてください。"
+      },
+      "aap": {
+        "text": "メールやメッセージではなく、同僚の机に行って直接話してみてください。"
+      },
+      "aaq": {
+        "text": "NIHの研究者による健康ボランティアの研究では、早期かつ頻繁な短い休憩が私たちの脳が新しいスキルを学ぶのを助ける可能性があることがわかりました。"
+      },
+      "aas": {
+        "text": "気に入ったストレッチ運動を見つけましたか？長時間座っている影響をよりよく打ち消すために、複数回繰り返すことを忘れないでください。"
+      },
+      "aat": {
+        "text": "手のひらを自分に向ける形で腕を伸ばし、4回時計回りに、さらに4回反時計回りに手を回転させます。"
+      },
+      "aau": {
+        "text": "頭の後ろで手を組み、手のひらを上にして頭の上に上げます。"
+      },
+      "aav": {
+        "text": "30分静止するごとに、少なくとも1分は刺激が必要です。"
+      },
+      "aaw": {
+        "text": "この運動は短時間で全身を鍛えますが、どの運動と同じように注意が必要です。多くのアプリが初心者をサポートしてくれます。"
+      },
+      "aax": {
+        "text": "週に4〜5回、心拍数を毎分120回に20分間上げてみてください。定期的に心拍数を上げることは心血管の健康を改善します。"
+      },
+      "aay": {
+        "text": "階段の昇降はジョギングよりも1分あたり多くのカロリーを消費する高強度の身体活動であることが研究で示されています。"
+      },
+      "aaz": {
+        "text": "芸術療法はストレス管理において特にメンタルヘルスに大きな利益があることが知られています。短い詩を書いてみたり、写真を撮ったり、何か小さな絵を描いてみるのはいかがでしょうか？"
+      },
+      "aba": {
+        "text": "きれいな空間は仕事への集中を助け、幸福などのポジティブな感情と関連しています。"
+      },
+      "abb": {
+        "text": "自然はポジティブな感情、ストレスや不安の減少に関連しています。可能であれば、昼休みを緑豊かな屋外で過ごしてみてください。"
+      },
+      "abc": {
+        "text": "公共交通機関を利用している場合、座るより立つ方が良いです。可能であれば、日常の移動中に歩いてみたり自転車を使うようにしましょう。"
+      },
+      "abd": {
+        "text": "あくびは本当に役立ちます。それは目を潤し、目を保護する涙を生成するからです。"
+      },
+      "abe": {
+        "text": "指を目の近くに持ち込みそれに焦点を当てます。ゆっくり指を遠ざけ、遠くの物に焦点を合わせ、再び指に戻します。指を戻し、遠くの物に焦点を合わせます。"
+      },
+      "abg": {
+        "text": "丸めた靴下や柔らかいゴムのボールを握りしめ、5秒間保持します。これを何度か繰り返します。"
+      },
+      "abh": {
+        "text": "最新の研究では、自分の呼吸をゆっくりとコントロールすることが健康と長寿に有益であることが示されています。"
+      },
+      "abi": {
+        "text": "目を閉じて、浜辺や森のような平和でリラックスできる場所にいることを想像してください。そこでの景色、音、感覚に集中してください。"
+      }
+    }
 }

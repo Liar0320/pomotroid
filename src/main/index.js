@@ -272,8 +272,8 @@ app.on('ready', () => {
 // 在主进程文件末尾添加锻炼弹窗相关代码
 let exerciseWindow = null
 
-function createExerciseWindow(message = '请休息一下，做几次深呼吸。', duration = 30) {
-  console.log('createExerciseWindow 被调用', message, duration)
+function createExerciseWindow(message = '请休息一下，做几次深呼吸。', duration = 30, breakType = 'short') {
+  console.log('createExerciseWindow 被调用', message, duration, breakType)
   if (exerciseWindow) {
     exerciseWindow.destroy()
   }
@@ -289,14 +289,18 @@ function createExerciseWindow(message = '请休息一下，做几次深呼吸。
   const popupX = Math.round((screenWidth - popupWidth) / 2)
   const popupY = Math.round((screenHeight - popupHeight) / 2)
 
-  // 获取主窗口的主题色变量并传递给弹窗
-  mainWindow.webContents.executeJavaScript(
-    "getComputedStyle(document.documentElement).getPropertyValue('--color-accent-light').trim()"
-  ).then((accentColor) => {
+  // 获取主窗口的主题色变量和语言设置并传递给弹窗
+  mainWindow.webContents.executeJavaScript(`
+    (() => {
+      const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent-light').trim()
+      const currentLang = localStorage.getItem('lang') || 'en'
+      return { accentColor, currentLang }
+    })()
+  `).then(({ accentColor, currentLang }) => {
     const url =
       process.env.NODE_ENV === 'development'
-        ? `http://localhost:9080/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}`
-        : `file://${__dirname}/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}`
+        ? `http://localhost:9080/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}&lang=${currentLang}&breakType=${breakType}`
+        : `file://${__dirname}/exercise.html?msg=${encodeURIComponent(message)}&duration=${duration}&color=${encodeURIComponent(accentColor)}&lang=${currentLang}&breakType=${breakType}`
     exerciseWindow = new BrowserWindow({
       width: popupWidth,
       height: popupHeight,
@@ -319,20 +323,13 @@ function createExerciseWindow(message = '请休息一下，做几次深呼吸。
       // console.log('exerciseWindow 已关闭')
       exerciseWindow = null
     })
-    // 主进程定时强制关闭弹窗（已删除）
-    // setTimeout(() => {
-    //   if (exerciseWindow) {
-    //     exerciseWindow.destroy()
-    //     exerciseWindow = null
-    //   }
-    // }, duration * 1000)
   })
 }
 
 // 监听渲染进程的 IPC 触发
-ipcMain.on('show-exercise-reminder', (event, { message, duration }) => {
-  // console.log('收到 show-exercise-reminder IPC', message, duration)
-  createExerciseWindow(message, duration)
+ipcMain.on('show-exercise-reminder', (event, { message, duration, breakType }) => {
+  // console.log('收到 show-exercise-reminder IPC', message, duration, breakType)
+  createExerciseWindow(message, duration, breakType)
 })
 
 ipcMain.on('exercise-remaining-update', (event, seconds) => {
