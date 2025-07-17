@@ -1,0 +1,103 @@
+{
+  "language": "Sprache",
+  "hello": "Hallo",
+  "about": {
+    "version": "Version",
+    "releaseNotes": "(Versionshinweise)",
+    "licenseAndDocs": "Lizenz und Dokumentation"
+  },
+  "menu": {
+    "timerConfiguration": "Timer-Konfiguration",
+    "options": "Optionen",
+    "themes": "Themen",
+    "about": "Über"
+  },
+  "settings": {
+    "focusAndBreak": {
+      "title": "Fokus- und Pauseneinstellungen",
+      "showExerciseReminders": "Trainingserinnerungen während der Pause anzeigen",
+      "autoStartWorkTimer": "Auto-Start Arbeitszeitmesser",
+      "autoStartBreakTimer": "Automatischer Pausen-Timer",
+      "alwaysOnTop": "Immer im Vordergrund bei Fokus",
+      "deactivateAlwaysOnTopOnBreaks": "Immer im Vordergrund in Pausen deaktivieren"
+    },
+    "notificationsAndDisplay": {
+      "title": "Benachrichtigungen & Anzeige",
+      "tickSoundsWork": "Tickgeräusche - Arbeit",
+      "tickSoundsBreak": "Ticken - Pause",
+      "showReminderInDND": "Erinnerung im Nicht-Stören-Modus anzeigen",
+      "desktopNotifications": "Desktop Benachrichtigungen"
+    },
+    "basic": {
+      "title": "Grundlegende Einstellungen",
+      "minimizeToTray": "In den Infobereich minimieren",
+      "minimizeToTrayOnClose": "Beim Schließen in den Infobereich minimieren",
+      "autoLaunchOnLogin": "Autostart bei Anmeldung",
+      "language": "Sprache"
+    },
+    "globalShortcuts": {
+      "title": "Globale Tastenkombinationen",
+      "toggleTimer": "Timer umschalten",
+      "resetTimer": "Timer zurücksetzen",
+      "skipRound": "Runde überspringen"
+    }
+  },
+  "theme": {
+    "exerciseRemindersScreen": "Bildschirm für Übungserinnerungen",
+    "name": {
+      "midnightViolet": "Mitternachts-Violett",
+      "autumnBlessing": "Herbstsegen",
+      "greenCloud": "Grüne Wolke",
+      "coffeeKiss": "Kaffee Kuss",
+      "morningGlow": "Morgenglanz"
+    }
+  },
+  "timer": {
+    "focus": "Fokus",
+    "shortBreak": "Kurze Pause",
+    "rounds": "Runden",
+    "longBreak": "Lange Pause",
+    "resetDefaults": "Standardeinstellungen zurücksetzen",
+    "currentRound": {
+      "work": "Fokusrunde",
+      "shortBreak": "kurze Pause",
+      "longBreak": "lange Pause"
+    },
+    "exerciseReminder": {
+      "longBreak": "Beginne eine {time} Minuten lange Pause.",
+      "shortBreak": "Beginnen Sie eine {time}-minütige kurze Pause."
+    }
+  },
+  "footer": {
+    "focusRoundsCompleted": "Fokusrunden abgeschlossen",
+    "resetCurrentRound": "Aktuelle Runde zurücksetzen",
+    "reset": "Zurücksetzen",
+    "skipRound": "Aktuelle Runde überspringen",
+    "mute": "Stumm",
+    "unmute": "Stummschaltung aufheben"
+  },
+  "notification": {
+    "focusRoundComplete": "Fokusrunde abgeschlossen",
+    "longBreak": "Beginne eine {time} Minuten lange Pause.",
+    "shortBreak": "Beginnen Sie eine {time}-minütige kurze Pause.",
+    "breakFinished": "Die Pause ist vorbei.",
+    "focus": "Beginnen Sie, sich für {time} Minuten zu konzentrieren."
+  },
+  "titlebar": {
+    "settings": "Einstellungen"
+  },
+  "app": {
+    "title": {
+      "timer": "Timer",
+      "settings": "Einstellungen",
+      "themes": "Themen",
+      "about": "Über",
+      "pomotroid": "Pomotroid"
+    }
+  },
+  "exerciseReminder": {
+    "message": "Bitte machen Sie eine Pause und atmen Sie tief durch.",
+    "countdown": "Countdown: {seconds} Sekunden",
+    "skip": "Diese Pause überspringen"
+  }
+}
