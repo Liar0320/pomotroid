@@ -121,8 +121,8 @@
     <!-- 未实现-Language（语言切换功能） -->
     <div class="Setting-wrapper">
       <p class="Setting-title">Language</p>
-      <div class="language-select-wrapper">
-        <select id="language-select" class="language-select" >
+      <div class="language-select-wrapper"  >
+        <select id="language-select" class="language-select" v-model="$i18n.locale" @change="onLanguageChange">
           <option value="en" selected>English</option>
           <option value="zh-CN">简体中文</option>
           <option value="ja">日本語</option>
@@ -160,6 +160,12 @@
     </div>
     <div class="Setting-wrapper">
       <p class="Setting-title">Skip Round</p>
+      <shortcut-input :value="globalShortcuts['call-timer-skip']"
+        @input="shortcut => setGlobalShortcut('call-timer-skip', shortcut)" />
+    </div>
+    <!-- 测试 -->
+    <div class="Setting-wrapper">
+      <p class="Setting-title">{{ $t('settings') }}</p>
       <shortcut-input :value="globalShortcuts['call-timer-skip']"
         @input="shortcut => setGlobalShortcut('call-timer-skip', shortcut)" />
     </div>
@@ -232,6 +238,9 @@ export default {
   },
 
   methods: {
+    onLanguageChange() {
+      localStorage.setItem('lang', this.$i18n.locale)
+    },
     async selectAutoLaunch() {
       const newVal = !this.autoLaunch
       this.$electron.ipcRenderer.send('set-auto-launch', newVal)
