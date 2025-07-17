@@ -1,6 +1,6 @@
 <template>
   <div class="Drawer-menu">
-    <div class="Drawer-menu-wrapper" title="Timer Configuration" @click="setDrawerComponent('appDrawerTimer')"
+    <div class="Drawer-menu-wrapper" :title="$t('menu.timerConfiguration')" @click="setDrawerComponent('appDrawerTimer')"
       :class="{ 'is-active': currentDrawer === 'appDrawerTimer' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="Drawer-menu-wrapper" title="Options" @click="setDrawerComponent('appDrawerSettings')"
+    <div class="Drawer-menu-wrapper" :title="$t('menu.options')" @click="setDrawerComponent('appDrawerSettings')"
       :class="{ 'is-active': currentDrawer === 'appDrawerSettings' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="Drawer-menu-wrapper" title="Themes" @click="setDrawerComponent('appDrawerTheme')"
+    <div class="Drawer-menu-wrapper" :title="$t('menu.themes')" @click="setDrawerComponent('appDrawerTheme')"
       :class="{ 'is-active': currentDrawer === 'appDrawerTheme' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="Drawer-menu-wrapper" title="About" @click="setDrawerComponent('appDrawerAbout')"
+    <div class="Drawer-menu-wrapper" :title="$t('menu.about')" @click="setDrawerComponent('appDrawerAbout')"
       :class="{ 'is-active': currentDrawer === 'appDrawerAbout' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">

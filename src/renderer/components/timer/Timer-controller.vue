@@ -39,7 +39,7 @@ export default {
         // 只在showExerciseReminder为true时弹窗
         if (this.$store.getters.showExerciseReminder) {
           ipcRenderer.send('show-exercise-reminder', {
-            message: '长休息时间到，做个拉伸锻炼吧！',
+            message: this.$t('timer.exerciseReminder.longBreak'),
             duration: this.$store.getters.timeLongBreak * 60 // 秒
           })
         }
@@ -52,7 +52,7 @@ export default {
         // 只在showExerciseReminder为true时弹窗
         if (this.$store.getters.showExerciseReminder) {
           ipcRenderer.send('show-exercise-reminder', {
-            message: '短休息时间到，起来活动一下！',
+            message: this.$t('timer.exerciseReminder.shortBreak'),
             duration: this.$store.getters.timeShortBreak * 60 // 秒
           })
         }

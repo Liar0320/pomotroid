@@ -2,7 +2,7 @@
   <div class="Container">
     <div class="Setting-wrapper">
       <div class="Setting-row">
-        <p class="Setting-title">Focus</p>
+        <p class="Setting-title">{{ $t('timer.focus') }}</p>
         <p class="Setting-value">{{ localTimeWork + ':00' }}</p>
       </div>
       <div class="Slider-wrapper">
@@ -24,7 +24,7 @@
 
     <div class="Setting-wrapper">
       <div class="Setting-row">
-        <p class="Setting-title">Short Break</p>
+        <p class="Setting-title">{{ $t('timer.shortBreak') }}</p>
         <p class="Setting-value">{{ localTimeShortBreak + ':00' }}</p>
       </div>
       <div class="Slider-wrapper">
@@ -46,7 +46,7 @@
 
     <div class="Setting-wrapper">
       <div class="Setting-row">
-        <p class="Setting-title">Rounds</p>
+        <p class="Setting-title">{{ $t('timer.rounds') }}</p>
         <p class="Setting-value">{{ localWorkRounds }}</p>
       </div>
       <div class="Slider-wrapper">
@@ -70,7 +70,7 @@
 
     <div class="Setting-wrapper">
       <div class="Setting-row">
-        <p class="Setting-title">Long Break</p>
+        <p class="Setting-title">{{ $t('timer.longBreak') }}</p>
         <p class="Setting-value">{{ localTimeLongBreak + ':00' }}</p>
       </div>
       <div class="Slider-wrapper">
@@ -91,7 +91,7 @@
     </div>
 
     <div class="Setting-wrapper">
-      <p class="TextButton" @click="resetDefaults">Reset Defaults</p>
+      <p class="TextButton" @click="resetDefaults">{{ $t('timer.resetDefaults') }}</p>
     </div>
   </div>
 </template>

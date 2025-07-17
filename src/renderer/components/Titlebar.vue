@@ -1,7 +1,7 @@
 <template>
   <nav class="Titlebar">
     <!-- menu -->
-    <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single" style="position: absolute;" title="Settings"
+    <div class="Icon-wrapper Icon-wrapper--titlebar Icon-wrapper--single" style="position: absolute;" :title="$t('titlebar.settings')"
       @click="toggleDrawer">
       <div class="Menu-wrapper" :class="drawerOpen ? 'is-collapsed' : ''">
         <!-- 默认状态的svg图标 -->

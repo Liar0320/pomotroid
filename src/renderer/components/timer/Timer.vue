@@ -157,11 +157,11 @@ export default {
 
     currentRoundDisplay() {
       if (this.currentRound === 'work') {
-        return 'focus round'
+        return this.$t('timer.currentRound.work')
       } else if (this.currentRound === 'short-break') {
-        return 'short break'
+        return this.$t('timer.currentRound.shortBreak')
       } else if (this.currentRound === 'long-break') {
-        return 'long break'
+        return this.$t('timer.currentRound.longBreak')
       }
     },
 

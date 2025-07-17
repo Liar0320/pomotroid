@@ -5,9 +5,9 @@
       <div class="progress-bar-bg">
         <div class="progress-bar" :style="{ width: percent + '%' }"></div>
       </div>
-      <div class="countdown">Countdown: {{ seconds }} seconds</div>
+      <div class="countdown">{{ $t('exerciseReminder.countdown', { seconds: seconds }) }}</div>
       <button class="skip-btn" @click="skip">
-        Skip this break
+        {{ $t('exerciseReminder.skip') }}
         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.16663 10.5H15.8333" stroke="white" stroke-width="1.5" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      message: '请休息一下，做几次深呼吸。',
+      message: '',
       seconds: 30,
       total: 30,
       timer: null,
@@ -56,6 +56,7 @@ export default {
     }
   },
   mounted() {
+    this.message = this.$t('exerciseReminder.message')
     this.parseQuery()
     if (window.require) {
       const { ipcRenderer } = window.require('electron')

@@ -23,11 +23,11 @@
       </svg>
       <h2>Pomotroid</h2>
       <p class="label">
-        Version: {{ version }}
-        <span class="link" @click="openUrl(releaseUrl)">(release notes)</span>
+        {{ $t('about.version') }}: {{ version }}
+        <span class="link" @click="openUrl(releaseUrl)">{{ $t('about.releaseNotes') }}</span>
       </p>
-      <p class="label link" @click="openUrl('https://www.nearhub.us/')">
-        License and Documentation
+      <p class="label link" @click="openUrl('https://github.com/Splode/pomotroid/blob/master/LICENSE')">
+        {{ $t('about.licenseAndDocs') }}
       </p>
     </section>
   </div>

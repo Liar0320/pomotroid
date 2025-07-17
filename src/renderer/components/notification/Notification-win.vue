@@ -28,7 +28,7 @@ export default {
       notifier.notify(
         {
           appName: 'com.splode.pomotroid',
-          title: opts.title || 'Focus Round Complete',
+          title: opts.title || this.$t('notification.focusRoundComplete'),
           message: opts.message,
           icon: opts.icon || path.join(__static, 'icon.png'),
           sound: false
@@ -43,22 +43,22 @@ export default {
 
     notifyLongBreak() {
       this.callNotification({
-        message: `Begin a ${this.timeLongBreak} minute long break.`,
+        message: this.$t('notification.longBreak', { time: this.timeLongBreak }),
         icon: path.join(__static, 'icon--blue.png')
       })
     },
 
     notifyShortBreak() {
       this.callNotification({
-        message: `Begin a ${this.timeShortBreak} minute short break.`,
+        message: this.$t('notification.shortBreak', { time: this.timeShortBreak }),
         icon: path.join(__static, 'icon--green.png')
       })
     },
 
     notifyWork() {
       this.callNotification({
-        title: 'Break Finished',
-        message: `Begin focusing for ${this.timeWork} minutes.`
+        title: this.$t('notification.breakFinished'),
+        message: this.$t('notification.focus', { time: this.timeWork })
       })
     }
   },

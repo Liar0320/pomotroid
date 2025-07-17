@@ -59,18 +59,18 @@ export default {
       if (this.drawerOpen) {
         switch (this.currentDrawer) {
           case 'appDrawerTimer':
-            return 'Timer'
+            return this.$t('app.title.timer')
           case 'appDrawerSettings':
-            return 'Settings'
+            return this.$t('app.title.settings')
           case 'appDrawerTheme':
-            return 'Themes'
+            return this.$t('app.title.themes')
           case 'appDrawerAbout':
-            return 'About'
+            return this.$t('app.title.about')
           default:
-            return 'Pomotroid'
+            return this.$t('app.title.pomotroid')
         }
       }
-      return 'Pomotroid'
+      return this.$t('app.title.pomotroid')
     },
 
     computedTitleColor() {

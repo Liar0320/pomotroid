@@ -38,24 +38,24 @@ export default {
 
     notifyLongBreak() {
       this.callNotification({
-        title: 'Focus Round Complete',
-        body: `Begin a ${this.timeLongBreak} minute long break.`,
+        title: this.$t('notification.focusRoundComplete'),
+        body: this.$t('notification.longBreak', { time: this.timeLongBreak }),
         icon: path.join('static', 'icon--blue.png')
       })
     },
 
     notifyShortBreak() {
       this.callNotification({
-        title: 'Focus Round Complete',
-        body: `Begin a ${this.timeShortBreak} minute short break.`,
+        title: this.$t('notification.focusRoundComplete'),
+        body: this.$t('notification.shortBreak', { time: this.timeShortBreak }),
         icon: path.join('static', 'icon--green.png')
       })
     },
 
     notifyWork() {
       this.callNotification({
-        title: 'Break Finished',
-        body: `Begin focusing for ${this.timeWork} minutes.`
+        title: this.$t('notification.breakFinished'),
+        body: this.$t('notification.focus', { time: this.timeWork })
       })
     }
   },

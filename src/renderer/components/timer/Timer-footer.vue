@@ -4,17 +4,17 @@
       <div class="Round-reset-row-strict">
         <span class="Round-main">
           {{ round + '/' + workRounds }}
-          <span v-if="totalWorkRounds > 0" class="Total-rounds" title="Focus rounds completed">({{ totalWorkRounds
+          <span v-if="totalWorkRounds > 0" class="Total-rounds" :title="$t('footer.focusRoundsCompleted')">({{ totalWorkRounds
             }})</span>
         </span>
-        <span class="TextButton Reset-orange" title="Reset current round" @click="callForReset">
-          Reset
+        <span class="TextButton Reset-orange" :title="$t('footer.resetCurrentRound')" @click="callForReset">
+          {{ $t('footer.reset') }}
         </span>
       </div>
     </div>
     <div class="Icon-group">
       <!-- skip -->
-      <div class="Icon-wrapper Icon-wrapper--double--left" title="Skip the current round" @click="skipRound">
+      <div class="Icon-wrapper Icon-wrapper--double--left" :title="$t('footer.skipRound')" @click="skipRound">
         <!-- 跳过按钮的SVG 图标 -->
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Icon--skip">
           <path d="M6 4.80005L14.4 12L6 19.2V4.80005Z" stroke="white" stroke-width="1.66667" stroke-linecap="round"
@@ -23,7 +23,7 @@
         </svg>
       </div>
       <!-- mute -->
-      <div class="Icon-wrapper Icon-wrapper--double--right" :title="volume > 0 ? 'Mute' : 'Unmute'" @click="toggleMute"
+      <div class="Icon-wrapper Icon-wrapper--double--right" :title="volume > 0 ? $t('footer.mute') : $t('footer.unmute')" @click="toggleMute"
         @mouseenter="volumeSliderHidden = false">
         <transition name="fade" mode="out-in">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Icon--mute" v-if="localVolume > 0">
