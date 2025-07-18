@@ -7,48 +7,79 @@ on:
       - test
 
 jobs:
-  build-and-release:
-    runs-on: macos-latest  # macOS runner 可以构建 mac 和 win 应用
-    strategy:
-      matrix:
-        node-version: [16]
-
+  build-mac:
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           cache: 'npm'
-  
+
       - name: Install Python 3 and symlink python
         run: |
           brew install python
           if ! command -v python &> /dev/null; then
             ln -s $(which python3) /usr/local/bin/python
           fi
-  
+
       - name: Install dependencies
         run: npm install
 
-      - name: Build macOS and Windows apps
-        run:  PYTHON_PATH=$(which python3) npm run build -- --mac --win --publish never
+      - name: Build macOS app
+        run: npm run build -- --mac --publish never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Archive release artifacts
+      - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: pomotroid-artifacts-${{ github.run_number }}
+          name: mac-artifacts-${{ github.run_number }}
+          path: build/*.dmg
+
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Windows app
+        run: npm run build -- --win --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-artifacts-${{ github.run_number }}
           path: |
-            build/*.dmg
             build/*.exe
             build/*.portable.exe
             build/*.zip
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    needs: [build-mac, build-win]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Display structure for debug
+        run: ls -R ./artifacts
 
       - name: Create GitHub Pre-release
         uses: softprops/action-gh-release@v1
@@ -57,14 +88,14 @@ jobs:
           name: Pre-release ${{ github.run_number }}
           body: |
             ✅ 自动构建发布  
-            - 包含 macOS (.dmg) 与 Windows (.exe) 安装包
-            - 构建版本号：${{ github.run_number }}
+            - macOS (.dmg) 和 Windows (.exe)
+            - 版本号：${{ github.run_number }}
           draft: false
           prerelease: true
           files: |
-            build/*.dmg
-            build/*.exe
-            build/*.portable.exe
-            build/*.zip
+            artifacts/mac-artifacts-${{ github.run_number }}/*.dmg
+            artifacts/win-artifacts-${{ github.run_number }}/*.exe
+            artifacts/win-artifacts-${{ github.run_number }}/*.portable.exe
+            artifacts/win-artifacts-${{ github.run_number }}/*.zip
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

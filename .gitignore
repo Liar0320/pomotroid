@@ -11,3 +11,5 @@ thumbs.db
 *.pem
 *.key
 *.cert
+
+build/
