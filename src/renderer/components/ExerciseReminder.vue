@@ -5,7 +5,7 @@
       <div class="progress-bar-bg">
         <div class="progress-bar" :style="{ width: percent + '%' }"></div>
       </div>
-      <div class="countdown">{{ $t('exerciseReminder.countdown', { seconds: seconds }) }}</div>
+      <div class="countdown">{{ formatCountdown(seconds) }}</div>
       <button class="skip-btn" @click="skip">
         {{ $t('exerciseReminder.skip') }}
         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +84,18 @@ export default {
         console.error('获取随机提示语时出错:', error)
         return this.message || this.$t('exerciseReminder.message')
       }
+    },
+    formatCountdown(seconds) {
+      if (seconds < 60) {
+        return this.$t('exerciseReminder.countdownSeconds', { seconds })
+      } else if (seconds < 3600) {
+        const minutes = Math.ceil(seconds / 60)
+        return this.$t('exerciseReminder.countdownMinutes', { minutes })
+      } else {
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.ceil((seconds % 3600) / 60)
+        return this.$t('exerciseReminder.countdownHoursMinutes', { hours, minutes })
+      }
     }
   },
   mounted() {
@@ -103,9 +115,6 @@ export default {
     if (this.bgColor) {
       this.$el.style.background = this.bgColor
     }
-  },
-  beforeDestroy() {
-    // 不再需要清理定时器
   }
 }
 </script>
