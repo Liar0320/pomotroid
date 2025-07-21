@@ -79,8 +79,13 @@ export default {
   },
 
   created() {
-    if (!this.theme || this.theme === 'pomotroid') return
-    themer.apply(this.theme)
+    let theme = this.theme
+    if (!theme || theme === 'pomotroid') {
+      theme = 'ayu'
+      this.$store.dispatch('setSetting', { key: 'theme', val: theme })
+      localStorage.setItem('theme', theme)
+    }
+    themer.apply(theme)
   }
 }
 </script>

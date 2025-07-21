@@ -76,11 +76,11 @@
         :class="tickSoundsDuringBreak ? 'is-active' : 'is-inactive'"></div>
     </div>
     <!--未实现 Show Reminder in Do Not Disturb Mode（在勿扰模式下显示提醒） --功能未实现-->
-    <div class="Setting-wrapper">
+    <!-- <div class="Setting-wrapper">
       <p class="Setting-title">{{ $t('settings.notificationsAndDisplay.showReminderInDND') }}</p>
       <div class="Checkbox" @click="selectAutoStartBreakTimer"
         :class="autoStartBreakTimer ? 'is-active' : 'is-inactive'"></div>
-    </div>
+    </div> -->
     <!-- Desktop Notifications -->
     <div class="Setting-wrapper">
       <p class="Setting-title">{{ $t('settings.notificationsAndDisplay.desktopNotifications') }}</p>
@@ -118,7 +118,7 @@
       <p class="Setting-title">{{ $t('settings.basic.autoLaunchOnLogin') }}</p>
       <div class="Checkbox" @click="selectAutoLaunch" :class="autoLaunch ? 'is-active' : 'is-inactive'"></div>
     </div>
-    <!-- 未实现-Language（语言切换功能） -->
+    <!-- 实现-Language（语言切换功能） -->
     <div class="Setting-wrapper">
       <p class="Setting-title">{{ $t('settings.basic.language') }}</p>
       <div class="language-select-wrapper">
@@ -165,6 +165,7 @@
       <shortcut-input :value="globalShortcuts['call-timer-skip']"
         @input="shortcut => setGlobalShortcut('call-timer-skip', shortcut)" />
     </div>
+    <div class="space-bottom"></div>
   </div>
 </template>
 
@@ -441,5 +442,8 @@ export default {
   color: #FFFFFF;
   font-size: 14px;
   letter-spacing: 0.02em;
+}
+.space-bottom {
+  height: 30px;
 }
 </style>
