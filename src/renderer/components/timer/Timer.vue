@@ -270,6 +270,13 @@ export default {
     },
 
     initTimer() {
+      // 切换round时彻底销毁并重建timerWorker，避免闪烁
+      if (this.timerWorker) {
+        this.timerWorker.removeEventListener('message', this.handleMessage)
+        this.timerWorker.terminate()
+      }
+      this.timerWorker = new TimerWorker()
+      this.timerWorker.addEventListener('message', this.handleMessage)
       switch (this.currentRound) {
         case 'work':
           this.minutes = this.timeWork
@@ -287,6 +294,7 @@ export default {
           this.createTimer(25)
           break
       }
+      this.currentTime = 0
     },
 
     createTimer(min) {
@@ -336,8 +344,7 @@ export default {
     this.initTimer()
 
     EventBus.$on('timer-init', opts => {
-      // clear previous timers
-      this.resetTimer()
+      // 只重建timerWorker，不再reset，避免闪烁
       this.initTimer()
       if (opts.auto) {
         setTimeout(() => {
