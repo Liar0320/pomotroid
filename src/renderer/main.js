@@ -2,8 +2,14 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import VueI18n from 'vue-i18n'
+import dracula from '../../static/themes/dracula.json'
 
 Vue.use(VueI18n)
+
+// 启动时优先注入dracula主题变量
+Object.entries(dracula.colors).forEach(([k, v]) => {
+  document.documentElement.style.setProperty(k, v)
+})
 
 // 自动导入 locales 目录下所有 json 文件
 function loadLocaleMessages() {
