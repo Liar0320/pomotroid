@@ -1,0 +1,101 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - pre-release
+      - test
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Install Python 3 and symlink python
+        run: |
+          brew install python
+          if ! command -v python &> /dev/null; then
+            ln -s $(which python3) /usr/local/bin/python
+          fi
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build macOS app
+        run: npm run build -- --mac --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload macOS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-artifacts-${{ github.run_number }}
+          path: build/*.dmg
+
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Windows app
+        run: npm run build -- --win --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-artifacts-${{ github.run_number }}
+          path: |
+            build/*.exe
+            build/*.portable.exe
+            build/*.zip
+
+  release:
+    needs: [build-mac, build-win]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Display structure for debug
+        run: ls -R ./artifacts
+
+      - name: Create GitHub Pre-release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: pre-release-${{ github.run_number }}
+          name: Pre-release ${{ github.run_number }}
+          body: |
+            ✅ 自动构建发布  
+            - macOS (.dmg) 和 Windows (.exe)
+            - 版本号：${{ github.run_number }}
+          draft: false
+          prerelease: true
+          files: |
+            artifacts/mac-artifacts-${{ github.run_number }}/*.dmg
+            artifacts/win-artifacts-${{ github.run_number }}/*.exe
+            artifacts/win-artifacts-${{ github.run_number }}/*.portable.exe
+            artifacts/win-artifacts-${{ github.run_number }}/*.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

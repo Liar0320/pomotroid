@@ -1,7 +1,6 @@
 <template>
   <div class="Dial-wrapper">
-    <slot></slot>
-    <p class="Dial-label">{{ currentRoundDisplay }}</p>
+    <span class="Dial-time-wrapper"><slot></slot></span>
     <svg
       version="1.2"
       baseProfile="tiny"
@@ -25,28 +24,7 @@
         d="M115,5c60.8,0,110,49.2,110,110s-49.2,110-110,110S5,175.8,5,115S54.2,5,115,5"
       />
     </svg>
-    <svg
-      version="1.2"
-      baseProfile="tiny"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      viewBox="0 0 230 230"
-      xml:space="preserve"
-      width="220"
-      height="220"
-      class="Dial-bg"
-    >
-      <path
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-miterlimit="10"
-        d="M115,5c60.8,0,110,49.2,110,110s-49.2,110-110,110S5,175.8,5,115S54.2,5,115,5"
-      />
-    </svg>
+    <p class="Dial-label">{{ currentRoundDisplay }}</p>
   </div>
 </template>
 
@@ -202,27 +180,41 @@ export default {
 
 <style lang="scss" scoped>
 .Dial-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
   position: relative;
-}
-
-.Dial-label {
-  letter-spacing: 0.1em;
-  position: absolute;
-  top: 66%;
-  text-transform: uppercase;
-}
-
-.Dial-bg {
-  stroke: var(--color-background-lightest);
+  width: 220px;
+  height: 220px;
+  margin: 35px auto 0 auto;
 }
 
 .Dial-fill {
   position: absolute;
-  transform-origin: center;
-  -webkit-app-region: no-drag;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  z-index: 1;
+}
+// 调整时间显示位置
+.Dial-time-wrapper {
+  position: absolute;
+  top: 30%;
+  left: 73%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+// 调整模式显示位置
+.Dial-label {
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 1.2rem;      // 可根据需要调整
+  white-space: nowrap;    // 关键：防止自动换行
 }
 
 .Dial-fill--work {
