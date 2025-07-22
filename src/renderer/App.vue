@@ -86,6 +86,7 @@ export default {
       localStorage.setItem('theme', theme)
     }
     themer.apply(theme)
+    // console.log('i18n标题：', this.$t('app.title.pomotroid'))
   }
 }
 </script>

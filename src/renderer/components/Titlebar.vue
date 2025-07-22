@@ -49,7 +49,7 @@ export default {
   props: {
     titleText: {
       type: String,
-      default: 'Pomotroid'
+      default: 'Pomolock'
     }
   },
   computed: {
