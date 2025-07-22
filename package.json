@@ -27,7 +27,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "pomolock",
+    "productName": "Pomolock",
     "appId": "com.auditoryworks.pomolock",
     "directories": {
       "output": "build"
