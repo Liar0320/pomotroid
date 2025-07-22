@@ -17,7 +17,7 @@ const state = {
   minToTrayOnClose: localStore.get('minToTrayOnClose'),
   notifications: localStore.get('notifications'),
   os: process.platform,
-  theme: localStore.get('theme') || 'Pomotroid',
+  theme: localStore.get('theme') || 'Green Cloud',
   showExerciseReminder: localStore.get('showExerciseReminder') !== undefined
     ? localStore.get('showExerciseReminder')
     : false,

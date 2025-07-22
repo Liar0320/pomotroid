@@ -91,12 +91,14 @@
       "settings": "设置",
       "themes": "主题",
       "about": "关于",
-      "pomotroid": "Pomotroid"
+      "pomotroid": "Pomolock"
     }
   },
   "exerciseReminder": {
     "message": "请休息一下，做几次深呼吸。",
-    "countdown": "倒计时：{seconds}秒",
+    "countdownSeconds": "倒计时：{seconds}秒",
+    "countdownMinutes": "倒计时：{minutes}分钟",
+    "countdownHoursMinutes": "倒计时：{hours}小时{minutes}分钟",
     "skip": "跳过此次休息"
   },
   "miniBreakIdeas": {

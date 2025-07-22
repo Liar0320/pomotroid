@@ -21,7 +21,7 @@
           d="M67.9725 73.0564H58.0599C56.3724 73.0564 55 71.6999 55 70.032V59.2546C55 58.0096 56.0214 57 57.2811 57C58.5408 57 59.5622 58.0096 59.5622 59.2546V68.5478H67.9725C69.2322 68.5478 70.2536 69.5574 70.2536 70.8024C70.2536 72.0475 69.2322 73.0564 67.9725 73.0564Z"
           fill="white" />
       </svg>
-      <h2>Pomotroid</h2>
+      <h2>Pomolock</h2>
       <p class="label">
         {{ $t('about.version') }}: {{ version }}
         <span class="link" @click="openUrl(releaseUrl)">{{ $t('about.releaseNotes') }}</span>

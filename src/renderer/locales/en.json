@@ -91,13 +91,16 @@
       "settings": "Settings",
       "themes": "Themes",
       "about": "About",
-      "pomotroid": "Pomotroid"
+      "pomotroid": "Pomolock"
     }
   },
   "exerciseReminder": {
     "message": "Please take a break and do some deep breathing.",
     "countdown": "Countdown: {seconds} seconds",
-    "skip": "Skip this break"
+    "skip": "Skip this break",
+    "countdownSeconds": "Countdown: {seconds} seconds",
+    "countdownMinutes": "Countdown: {minutes} minutes",
+    "countdownHoursMinutes": "Countdown: {hours} hours {minutes} minutes"
   },
     "miniBreakIdeas": {
       "aaa": {

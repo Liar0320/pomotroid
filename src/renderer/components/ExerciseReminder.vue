@@ -5,7 +5,7 @@
       <div class="progress-bar-bg">
         <div class="progress-bar" :style="{ width: percent + '%' }"></div>
       </div>
-      <div class="countdown">{{ $t('exerciseReminder.countdown', { seconds: seconds }) }}</div>
+      <div class="countdown">{{ formatCountdown(seconds) }}</div>
       <button class="skip-btn" @click="skip">
         {{ $t('exerciseReminder.skip') }}
         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +84,18 @@ export default {
         console.error('获取随机提示语时出错:', error)
         return this.message || this.$t('exerciseReminder.message')
       }
+    },
+    formatCountdown(seconds) {
+      if (seconds < 60) {
+        return this.$t('exerciseReminder.countdownSeconds', { seconds })
+      } else if (seconds < 3600) {
+        const minutes = Math.ceil(seconds / 60)
+        return this.$t('exerciseReminder.countdownMinutes', { minutes })
+      } else {
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.ceil((seconds % 3600) / 60)
+        return this.$t('exerciseReminder.countdownHoursMinutes', { hours, minutes })
+      }
     }
   },
   mounted() {
@@ -103,9 +115,6 @@ export default {
     if (this.bgColor) {
       this.$el.style.background = this.bgColor
     }
-  },
-  beforeDestroy() {
-    // 不再需要清理定时器
   }
 }
 </script>
@@ -144,14 +153,14 @@ html, body {
   min-height: 80vh;
 }
 h2 {
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: 28px;
   margin-bottom: clamp(20px, 3vh, 40px);
   line-height: 1.2;
 }
 .progress-bar-bg {
   width: 100%;
   max-width: 600px;
-  height: clamp(8px, 1vh, 12px);
+  height: 10px;
   background: transparent;
   border-radius: 12px;
   margin: 0 auto clamp(12px, 2vh, 24px) auto;
@@ -166,13 +175,13 @@ h2 {
 }
 .countdown {
   margin-bottom: clamp(20px, 4vh, 50px);
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: 20px;
 }
 .skip-btn {
   background: none;
   border: none;
   color: #fff;
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: 20px;
   text-decoration: none;
   cursor: pointer;
   padding: clamp(8px, 1vh, 16px) clamp(12px, 2vw, 24px);
