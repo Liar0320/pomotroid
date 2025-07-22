@@ -154,6 +154,7 @@ html, body {
 }
 h2 {
   font-size: 28px;
+  font-family: Arial, sans-serif;
   margin-bottom: clamp(20px, 3vh, 40px);
   line-height: 1.2;
 }

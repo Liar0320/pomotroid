@@ -11,19 +11,29 @@ const state = {
     localStore.get('autoStartBreakTimer') === undefined
       ? true
       : localStore.get('autoStartBreakTimer'),
-  alwaysOnTop: localStore.get('alwaysOnTop'),
-  breakAlwaysOnTop: localStore.get('breakAlwaysOnTop'),
-  minToTray: localStore.get('minToTray'),
-  minToTrayOnClose: localStore.get('minToTrayOnClose'),
-  notifications: localStore.get('notifications'),
-  os: process.platform,
-  theme: localStore.get('theme') || 'Green Cloud',
   showExerciseReminder: localStore.get('showExerciseReminder') !== undefined
     ? localStore.get('showExerciseReminder')
-    : false,
-  autoLaunch: localStore.get('autoLaunch') !== undefined
-    ? localStore.get('autoLaunch')
-    : false
+    : true,
+  alwaysOnTop: localStore.get('alwaysOnTop') === undefined
+    ? true
+    : localStore.get('alwaysOnTop'),
+  breakAlwaysOnTop: localStore.get('breakAlwaysOnTop') === undefined
+    ? true
+    : localStore.get('breakAlwaysOnTop'),
+  minToTray: localStore.get('minToTray') === undefined
+    ? true
+    : localStore.get('minToTray'),
+  minToTrayOnClose: localStore.get('minToTrayOnClose') === undefined
+    ? true
+    : localStore.get('minToTrayOnClose'),
+  notifications: localStore.get('notifications') === undefined
+    ? true
+    : localStore.get('notifications'),
+  os: process.platform,
+  theme: localStore.get('theme') || 'Green Cloud',
+  autoLaunch: localStore.get('autoLaunch') === undefined
+    ? true
+    : localStore.get('autoLaunch')
 }
 
 const getters = {
