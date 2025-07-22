@@ -1,16 +1,16 @@
 {
-  "name": "pomotroid",
+  "name": "pomolock",
   "version": "0.13.0",
   "author": {
-    "email": "flyweight@pm.me",
-    "name": "Christopher Murphy",
-    "url": "https://github.com/splode"
+   "email": "developer@auditoryworks.tech",
+    "name": "Auditoryworks",
+    "url": "https://www.nearhub.us"
   },
   "description": "A simple and visually-pleasing Pomodoro timer",
-  "homepage": "https://github.com/Splode/pomotroid",
+  "homepage": "https://www.nearhub.us",
   "license": "MIT",
   "main": "./dist/electron/main.js",
-  "repository": "github:splode/pomotroid",
+  "repository": "github:splode/pomolock",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
     "build:win32": "node .electron-vue/build.js && electron-builder --ia32",
@@ -27,8 +27,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "Pomotroid",
-    "appId": "com.nearhub.pomotroid",
+    "productName": "pomolock",
+    "appId": "com.auditoryworks.pomolock",
     "directories": {
       "output": "build"
     },
@@ -36,7 +36,7 @@
       "dist/electron/**/*"
     ],
     "mac": {
-      "artifactName": "pomotroid-${version}-macos.${ext}",
+      "artifactName": "pomolock-${version}-macos.${ext}",
       "category": "public.app-category.productivity",
       "icon": "./build/icons/icon.png"
     },
@@ -55,13 +55,13 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
-      "artifactName": "pomotroid-${version}-${arch}-setup.${ext}"
+      "artifactName": "pomolock-${version}-${arch}-setup.${ext}"
     },
     "portable": {
-      "artifactName": "pomotroid-${version}-portable.${ext}"
+      "artifactName": "pomolock-${version}-portable.${ext}"
     },
     "linux": {
-      "artifactName": "pomotroid-${version}-linux.${ext}",
+      "artifactName": "pomolock-${version}-linux.${ext}",
       "category": "Utility",
       "icon": "./build/icons",
       "target": [
@@ -72,7 +72,7 @@
       ]
     },
     "snap": {
-      "summary": "Pomotroid is a simple and visually-pleasing Pomodoro timer."
+      "summary": "pomolock is a simple and visually-pleasing Pomodoro timer."
     }
   },
   "dependencies": {
