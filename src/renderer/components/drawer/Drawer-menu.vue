@@ -1,119 +1,69 @@
 <template>
   <div class="Drawer-menu">
-    <div
-      class="Drawer-menu-wrapper"
-      title="Timer Configuration"
-      @click="setDrawerComponent('appDrawerTimer')"
-      :class="{ 'is-active': currentDrawer === 'appDrawerTimer' }"
-    >
+    <div class="Drawer-menu-wrapper" title="Timer Configuration" @click="setDrawerComponent('appDrawerTimer')"
+      :class="{ 'is-active': currentDrawer === 'appDrawerTimer' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
-          <svg
-            version="1.2"
-            baseProfile="tiny"
-            id="timer-icon"
-            class="Icon"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="0 0 20 20"
-            width="18"
-            xml:space="preserve"
-          >
-            <g>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              :stroke="currentDrawer === 'appDrawerTimer' ? 'var(--color-accent)' : '#6170A3'" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 6V12L16 14" :stroke="currentDrawer === 'appDrawerTimer' ? 'var(--color-accent)' : '#6170A3'"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="Drawer-menu-wrapper" title="Options" @click="setDrawerComponent('appDrawerSettings')"
+      :class="{ 'is-active': currentDrawer === 'appDrawerSettings' }">
+      <div class="Drawer-menu-button">
+        <div class="Icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2724_184)">
               <path
-                fill="var(--color-background-lightest)"
-                d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10c5.5,0,10-4.5,10-10S15.5,0,10,0z M10,18c-4.4,0-8-3.6-8-8s3.6-8,8-8
-                s8,3.6,8,8S14.4,18,10,18z"
-              />
+                d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                :stroke="currentDrawer === 'appDrawerSettings' ? 'var(--color-accent)' : '#6170A3'" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round" />
               <path
-                fill="var(--color-background-lightest)"
-                d="M10.5,5H9v6l5.3,3.1l0.8-1.2l-4.5-2.7V5z"
-              />
+                d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z"
+                :stroke="currentDrawer === 'appDrawerSettings' ? 'var(--color-accent)' : '#6170A3'" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round" />
             </g>
+            <defs>
+              <clipPath id="clip0_2724_184">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
           </svg>
         </div>
       </div>
     </div>
-    <div
-      class="Drawer-menu-wrapper"
-      title="Options"
-      @click="setDrawerComponent('appDrawerSettings')"
-      :class="{ 'is-active': currentDrawer === 'appDrawerSettings' }"
-    >
-      <div class="Drawer-menu-button">
-        <svg
-          version="1.2"
-          baseProfile="tiny"
-          id="settings-icon"
-          class="Icon"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 19.5 20"
-          width="18"
-          xml:space="preserve"
-        >
-          <path
-            fill="var(--color-background-lightest)"
-            d="M17.2,11c0-0.3,0.1-0.6,0.1-1s0-0.7-0.1-1l2.1-1.6c0.2-0.1,0.2-0.4,0.1-0.6l-2-3.5C17.3,3.1,17,3,16.8,3.1
-            l-2.5,1c-0.5-0.4-1.1-0.7-1.7-1l-0.4-2.7C12.2,0.2,12,0,11.7,0h-4C7.5,0,7.3,0.2,7.2,0.4L6.9,3.1c-0.6,0.3-1.2,0.6-1.7,1l-2.5-1
-            C2.4,3,2.2,3.1,2.1,3.3l-2,3.5C-0.1,6.9,0,7.2,0.2,7.4L2.3,9c0,0.3-0.1,0.6-0.1,1s0,0.7,0.1,1l-2.1,1.6C0,12.8-0.1,13,0.1,13.3
-            l2,3.5c0.1,0.2,0.4,0.3,0.6,0.2l2.5-1c0.5,0.4,1.1,0.7,1.7,1l0.4,2.6c0,0.2,0.2,0.4,0.5,0.4h4c0.3,0,0.5-0.2,0.5-0.4l0.4-2.6
-            c0.6-0.3,1.2-0.6,1.7-1l2.5,1c0.2,0.1,0.5,0,0.6-0.2l2-3.5c0.1-0.2,0.1-0.5-0.1-0.6L17.2,11z M9.7,13.5c-1.9,0-3.5-1.6-3.5-3.5
-            s1.6-3.5,3.5-3.5s3.5,1.6,3.5,3.5S11.7,13.5,9.7,13.5z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div
-      class="Drawer-menu-wrapper"
-      title="Themes"
-      @click="setDrawerComponent('appDrawerTheme')"
-      :class="{ 'is-active': currentDrawer === 'appDrawerTheme' }"
-    >
+    <div class="Drawer-menu-wrapper" title="Themes" @click="setDrawerComponent('appDrawerTheme')"
+      :class="{ 'is-active': currentDrawer === 'appDrawerTheme' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            id="theme-icon"
-            class="Icon"
-          >
-            <path d="M0 0h24v24H0z" fill="none" />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              fill="var(--color-background-lightest)"
-              d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
-            />
+              d="M11.7999 23C8.94768 22.9611 6.22315 21.8108 4.20611 19.7938C2.18907 17.7767 1.03876 15.0522 0.999944 12.2C0.899944 6.39995 5.34994 1.49995 11.1499 1.04995H11.4499C12.6499 0.999952 13.7499 1.39995 14.5999 2.19995C15.4999 3.04995 15.9999 4.24995 15.9999 5.49995C15.9999 5.64995 15.9999 5.79995 16.0499 5.94995C16.1999 6.94995 17.0499 7.79995 18.0499 7.94995C18.1999 7.99995 18.3499 7.99995 18.4999 7.99995C19.7499 7.99995 20.9499 8.49995 21.7999 9.39995C22.5999 10.25 23.0499 11.35 22.9499 12.55V12.85C22.5499 18.55 17.7499 23 11.9999 23H11.7999ZM11.2999 3.04995C6.64994 3.39995 2.89994 7.49995 2.99994 12.15C3.09994 17 6.94994 20.9 11.8499 21C16.5499 21.05 20.5999 17.35 20.9999 12.7V12.45C21.0499 11.85 20.7999 11.25 20.3999 10.8C19.9499 10.3 19.2499 10.05 18.5499 10.05C18.2999 10.05 17.9999 10.05 17.7499 9.99995C15.8999 9.69995 14.3999 8.19995 14.0999 6.34995C13.9999 5.99995 13.9999 5.74995 13.9999 5.49995C13.9999 4.79995 13.6999 4.09995 13.2499 3.64995C12.7999 3.24995 12.2499 2.99995 11.6999 2.99995H11.5999C11.4999 2.99995 11.3999 2.99995 11.2999 3.04995ZM9.99994 9.49995C8.89994 9.49995 7.99994 8.59995 7.99994 7.49995C7.99994 6.39995 8.89994 5.49995 9.99994 5.49995C11.0999 5.49995 11.9999 6.39995 11.9999 7.49995C11.9999 8.59995 11.0999 9.49995 9.99994 9.49995ZM9.49994 15C10.3499 15 10.9999 15.65 10.9999 16.5C10.9999 17.35 10.3499 18 9.49994 18C8.64994 18 7.99994 17.35 7.99994 16.5C7.99994 15.65 8.64994 15 9.49994 15ZM6.99994 13.75C6.14994 13.75 5.49994 13.1 5.49994 12.25C5.49994 11.4 6.14994 10.75 6.99994 10.75C7.84994 10.75 8.49994 11.4 8.49994 12.25C8.49994 13.1 7.84994 13.75 6.99994 13.75Z"
+              :fill="currentDrawer === 'appDrawerTheme' ? 'var(--color-accent)' : '#6170A3'" />
           </svg>
         </div>
       </div>
     </div>
-    <div
-      class="Drawer-menu-wrapper"
-      title="About"
-      @click="setDrawerComponent('appDrawerAbout')"
-      :class="{ 'is-active': currentDrawer === 'appDrawerAbout' }"
-    >
+    <div class="Drawer-menu-wrapper" title="About" @click="setDrawerComponent('appDrawerAbout')"
+      :class="{ 'is-active': currentDrawer === 'appDrawerAbout' }">
       <div class="Drawer-menu-button">
         <div class="Icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="about-icon"
-            class="Icon"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path fill="none" d="M0 0h24v24H0V0z" />
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              fill="var(--color-background-lightest)"
-              d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-            />
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              :stroke="currentDrawer === 'appDrawerAbout' ? 'var(--color-accent)' : '#6170A3'" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 8V12" :stroke="currentDrawer === 'appDrawerAbout' ? 'var(--color-accent)' : '#6170A3'"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 16H12.01" :stroke="currentDrawer === 'appDrawerAbout' ? 'var(--color-accent)' : '#6170A3'"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </div>
       </div>
@@ -151,7 +101,9 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 36px;
+  height: 52px;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .Drawer-menu-wrapper {
@@ -162,23 +114,9 @@ export default {
   position: relative;
   transition: $transitionDefault;
   height: 100%;
+  /* 去除 padding-bottom，防止撑高 */
   &:hover {
     background-color: var(--color-background-light);
-  }
-  &::after {
-    background-color: var(--color-accent);
-    content: '';
-    margin: 0 auto;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transition: $transitionSnappy;
-    width: 0;
-    height: 2px;
-  }
-  &.is-active::after {
-    width: 33%;
   }
 }
 
@@ -186,10 +124,43 @@ export default {
   align-items: center;
   display: flex;
   justify-content: center;
-  width: 45px;
+  width: 52px;
   height: 100%;
-  &.is-active {
-    border-bottom: 4px solid var(--color-accent);
-  }
+}
+
+.Icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px; // 固定高度
+  width: 24px;
+  position: relative;
+}
+
+.Icon-wrapper::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  bottom: -3px;
+  width: 32px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  opacity: 1;
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.Drawer-menu-wrapper.is-active .Icon-wrapper::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.Icon {
+  width: 24px !important;
+  height: 24px !important;
+  display: block;
 }
 </style>

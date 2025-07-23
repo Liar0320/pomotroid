@@ -1,15 +1,16 @@
 {
-  "name": "Andromeda",
+  "name": "Midnight Violet",
   "colors": {
-    "--color-long-round": "#C74DED",
-    "--color-short-round": "#00E8C6",
-    "--color-focus-round": "#EE5D43",
-    "--color-background": "#23262E",
-    "--color-background-light": "#2e323d",
-    "--color-background-lightest": "#746f77",
+    "--color-long-round": "#8AE8FC",
+    "--color-short-round": "#4EF97A",
+    "--color-focus-round": "#FE5454",
+    "--color-background": "#282A36",
+    "--color-background-light": "#373745",
+    "--color-background-lightest": "#373745",
     "--color-foreground": "#d5ced9",
     "--color-foreground-darker": "#746f77",
-    "--color-foreground-darkest": "#CD9731",
-    "--color-accent": "#FFE66D"
+    "--color-foreground-darkest": "#FF9041",
+    "--color-accent": "#FF9041",
+    "--color-accent-light": "#282A36"
   }
 }
